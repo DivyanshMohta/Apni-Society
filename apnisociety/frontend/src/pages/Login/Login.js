@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import './Login.css'; // Correct CSS file for Login component
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const Login = ({ onSignUp, image }) => {
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
 
   const handleLogin = async (e) => {
     e.preventDefault();

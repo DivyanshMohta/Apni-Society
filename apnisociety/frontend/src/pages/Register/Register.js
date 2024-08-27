@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './Register.css'; // Correct CSS file for Register component
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const Register = ({ onSignIn, image }) => {
+ 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -70,7 +72,7 @@ const Register = ({ onSignIn, image }) => {
           </div>
 
           <div className="signup-btn">
-            <button className="btn" type="submit">Sign Up</button>
+            <button className="btn" type="submit">Register</button>
           </div>
 
           <div className="sign-in-option">
