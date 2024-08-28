@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import './style.css'; // Ensure this path matches your directory structure
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from './firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,12 +10,20 @@ const Startup = () => {
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const navigate = useNavigate();
-
-    
-
+    const googleProvider = new GoogleAuthProvider();
 
     const toggleForm = () => {
         setIsSignUp(!isSignUp);
+    };
+
+    const handleGoogleLogin = async () => {
+        try {
+            const result = await signInWithPopup(auth, googleProvider);
+            console.log('Google login successful:', result.user);
+            navigate('/home');
+        } catch (error) {
+            console.error('Error during Google login:', error.message);
+        }
     };
 
     const handleSignUp = async (e) => {
@@ -26,8 +34,8 @@ const Startup = () => {
             navigate('/home');
         } catch (error) {
             console.error('Error during registration:', error.message);
+            alert(error.message);
         }
-        alert('SignIn successful');
     };
 
     const handleLogin = async (e) => {
@@ -35,25 +43,20 @@ const Startup = () => {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             console.log('Login successful:', userCredential.user);
-            alert('Login successfull');
             navigate('/home');
-
         } catch (error) {
             console.error('Error during login:', error.message);
+            alert(error.message);
         }
     };
 
-    
-
-    
     return (
         <div className={`container ${isSignUp ? 'active' : ''}`} id="container">
             <div className="form-container sign-up">
                 <form onSubmit={handleSignUp}>
                     <h1>Create Account</h1>
                     <div className="social-icons">
-                    
-                        <a href="#" className="icon" data-tooltip="Google"><i class="fa-brands fa-google"></i></a>
+                        <a href="#" className="icon" data-tooltip="Google" onClick={handleGoogleLogin}><i className="fa-brands fa-google"></i></a>
                         <a href="#" className="icon" data-tooltip="Facebook"><i className="fa-brands fa-facebook-f"></i></a>
                     </div>
                     <span>or use your email for registration</span>
@@ -71,6 +74,9 @@ const Startup = () => {
                     />
                     <input
                         type="password"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" 
+                        title="Must contain at least one uppercase letter, one lowercase letter, one number, and one special character, and be at least 8 characters long" 
+                        required
                         placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -82,7 +88,7 @@ const Startup = () => {
                 <form onSubmit={handleLogin}>
                     <h1>Sign In</h1>
                     <div className="social-icons">
-                        <a href="#" className="icon" data-tooltip="Google"><i className="fa-brands fa-google-plus-g"></i></a>
+                        <a href="#" className="icon" data-tooltip="Google" onClick={handleGoogleLogin}><i className="fa-brands fa-google"></i></a>
                         <a href="#" className="icon" data-tooltip="Facebook"><i className="fa-brands fa-facebook-f"></i></a>
                     </div>
                     <span>or use your email and password</span>
@@ -99,7 +105,7 @@ const Startup = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <a href="#">Forget Your Password?</a>
-                    <button type="submit" >Login</button>
+                    <button type="submit">Login</button>
                 </form>
             </div>
             <div className="toggle-container">
