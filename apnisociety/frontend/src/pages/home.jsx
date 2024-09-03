@@ -1,82 +1,82 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
+import './Home-Css.css';
+import Dashboard from './Dashboard';
+import namelogo from '../Images/Only_name_logo.png';
+import logoo from '../Images/logoo.png';
+import home_img from '../Images/image_home_page.avif';
+import profileIcon from '../Images/profile_icon.png'; // Import your profile icon
+import { auth } from './firebaseConfig'; // Import Firebase auth
 
-function home() {
-  return (
-<> 
-    <div className="flex h-screen w-screen bg-gray-100">
-      {/* Sidebar */}
-      <div className="flex flex-col w-64 bg-gray-900 text-white">
-        <div className="px-4 py-6">
-          <h2 className="text-3xl font-semibold">Dashboard</h2>
-        </div>
-        <nav className="flex flex-col space-y-4">
-          <a href="#" className="px-4 py-2 hover:bg-gray-700 rounded">
-            <i className="fas fa-home mr-3"></i>Dashboard
-          </a>
-          <a href="#" className="px-4 py-2 hover:bg-gray-700 rounded">
-            <i className="fas fa-users mr-3"></i>Team
-          </a>
-          <a href="#" className="px-4 py-2 hover:bg-gray-700 rounded">
-            <i className="fas fa-folder mr-3"></i>Projects
-          </a>
-          <a href="#" className="px-4 py-2 hover:bg-gray-700 rounded">
-            <i className="fas fa-calendar-alt mr-3"></i>Calendar
-          </a>
-          <a href="#" className="px-4 py-2 hover:bg-gray-700 rounded">
-            <i className="fas fa-file-alt mr-3"></i>Documents
-          </a>
-          <a href="#" className="px-4 py-2 hover:bg-gray-700 rounded">
-            <i className="fas fa-chart-line mr-3"></i>Reports
-          </a>
-        </nav>
-        <div className="mt-auto px-4 py-6">
-          <h3 className="text-gray-400 mb-2">Your teams</h3>
-          <a href="#" className="block mb-2 text-gray-300 hover:bg-gray-700 rounded px-4 py-2">
-            <span className="text-gray-400">H</span> Heroicons
-          </a>
-          <a href="#" className="block mb-2 text-gray-300 hover:bg-gray-700 rounded px-4 py-2">
-            <span className="text-gray-400">T</span> Tailwind Labs
-          </a>
-          <a href="#" className="block text-gray-300 hover:bg-gray-700 rounded px-4 py-2">
-            <span className="text-gray-400">W</span> Workcation
-          </a>
-        </div>
-        <div className="px-4 py-6">
-          <a href="#" className="flex items-center text-gray-300 hover:bg-gray-700 rounded px-4 py-2">
-            <i className="fas fa-cog mr-3"></i>Settings
-          </a>
-        </div>
-      </div>
-    
-      {/* Main Content */}
-      <div className="flex-grow">
-        <header className="flex items-center justify-between px-6 py-4 bg-white shadow">
-          <div className="flex items-center">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="px-4 py-2 border border-gray-300 rounded"
-            />
-          </div>
-          <div className="flex items-center">
-            <i className="fas fa-bell text-gray-600 mr-6"></i>
-            <div className="flex items-center">
-              <img
-                className="h-8 w-8 rounded-full object-cover"
-                src="https://via.placeholder.com/150"
-                alt="User profile"
-              />
-              <span className="ml-3 text-gray-700">Tom Cook</span>
+const HomePage = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        // Check if the user is logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setIsLoggedIn(true);
+            } else {
+                setIsLoggedIn(false);
+            }
+        });
+    }, []);
+
+    const handleLogout = () => {
+      auth.signOut().then(() => {
+          setIsLoggedIn(false);
+          navigate('/startup'); // Redirects to login after logout
+      });
+  };
+
+    return (
+        <>
+            <div className="home-container">
+                <nav className="navbar">
+                    <div className="Apni-logo">
+                        <a href="#">
+                            <img src={logoo} className='Society-logo' alt="Society Logo" />
+                        </a>
+                        <a href="#">
+                            <img src={namelogo} className='name-logo' alt="Name Logo" />
+                        </a>
+                    </div>
+                    <div className="nav-links">
+                        <a href="#info">Home</a>
+                        <a href="#">Features</a>
+                        <a href="#">Support</a>
+                        <a href="#">Contact Us</a>
+                        {isLoggedIn ? (
+                            <>
+                                <a href="Dashboard " onClick={() => navigate('/Dashboard')}>Dashboard</a>
+                                <div className='profile'>
+                                    <img src={profileIcon} alt="Profile"  className='profile_icon' />
+                                </div>
+                            </>
+                        ) : (
+                            <div className='home-page_login_btn'>
+                                <button onClick={() => navigate('/startup')}>Login</button>
+                            </div>
+                        )}
+                    </div>
+                </nav>
+
+                <section id='info'>
+                    <div className='info-div'>
+                        <h3>"AAPKI SOCIETY, AAPKA HAQ"</h3>
+                        <p>
+                            Welcome to AapniSociety, your go-to platform for seamless society management. From real-time visitor tracking to community updates and essential services, we simplify every aspect of living in a gated community. Stay connected, stay informed, and make your society a better place with AapniSociety.
+                        </p>
+                    </div>
+                    <div className='info-img'>
+                        <img src={home_img} alt="Home" />
+                    </div>
+                </section>
             </div>
-          </div>
-        </header>
-        <main className="bg-white p-6 h-full">
-          <div className="h-full w-full bg-gray-200 rounded-lg border-dashed border-4 border-gray-300"></div>
-        </main>
-      </div>
-    </div>
-</>
-  );
-}
+        </>
+    );
+};
 
-export default home;
+export default HomePage;

@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nerko+One&display=swap');
+
+.home-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    background-color: #B0DFFB;
+  
+}
+
+/* Navbar Styles */
+.navbar {
+    height: 5.2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(255, 255, 255); /* Sky blue color for the navbar */
+    padding: 15px 30px;
+    box-shadow: 5px 5px 2.5px #868484;
+}
+
+.logo a {
+    font-size: 24px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-links a {
+    font-weight: 600;
+    margin-left: 20px;
+    color: #000000;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+    
+}
+
+.nav-links a:hover {
+        color: #84c8ec; /* Darker shade of blue on hover */
+        transform: scale(1.1); /* Slightly enlarges the link on hover */
+    }
+
+/* Main Content Styles */
+.main-content {
+    text-align: center;
+    padding: 50px;
+    flex-grow: 1;
+}
+
+.main-content h1 {
+    font-size: 36px;
+    color: #4682b4;
+}
+
+.main-content p {
+    font-size: 18px;
+    color: #333;
+}
+
+.Apni-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.Society-logo{
+    /* padding-bottom: 5px; */
+    padding-right: 5px;
+    height: 75px;
+    align-items: center;
+}
+
+.name-logo{
+height: 35px;
+}
+
+.home-page_login_btn{
+    padding-left: 20px;
+}
+
+.home-page_login_btn button{
+    background: linear-gradient(135deg, #87ceeb, #1e90ff); /* Gradient sky blue */
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 50px; /* Rounded corners */
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    cursor: pointer;
+}
+
+.home-page_login_btn button:hover {
+    background: linear-gradient(135deg, #1e90ff, #87ceeb); /* Reversed gradient */
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.button:active {
+    transform: translateY(0); /* Reset lift when clicked */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Reset shadow on click */
+}
+
+#info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5em; /* Adjust padding as needed */
+    flex-wrap: wrap; /* Ensures proper layout on smaller screens */
+}
+
+/* Adjust the text section */
+.info-div {
+    align-items: center;
+    text-align: justify;
+    margin: 2em;
+    flex-basis: 45%; /* Adjusts width to 45% of the container */
+    font-size: 27px;
+    height: auto;
+    padding-top: 30px;
+}
+
+.info-div h3 {
+    text-align: center;
+    font-family: "Kanit", sans-serif;
+    font-weight: 600;
+    padding: 5px;
+    font-size: 2.5rem; /* Increased font size for heading */
+    color: #1e90ff; /* Appealing blue color */
+}
+
+.info-div p {
+    padding-left: 15px;
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    font-size: 1.2rem; /* Slightly larger text */
+    color: #333;
+    line-height: 1.6; /* Improves readability */
+}
+
+/* Center and enhance the image */
+.info-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45%; /* Adjusts width to 45% of the container */
+    margin: 0 auto; /* Centers the image horizontally */
+    padding-top: 30px;
+}
+
+.info-img img {
+    height: auto;
+    width: 100%;
+    max-width: 600px; /* Limits the size increase */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    object-fit: cover; /* Ensures the image covers the entire area */
+}
+
+.info-img img:hover {
+    transform: scale(1.05); /* Slightly zoom in on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.profile_icon{
+    padding-left: 20px;
+    height: 45px;
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.profile-menu {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.profile-icon {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+}
+
+.profile-icon svg {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.profile-icon span {
+    display: none;
+    font-size: 18px;
+}
+
+.profile-icon:hover span {
+    display: inline;
+}
+
+.profile-info {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.profile-icon:hover .profile-info {
+    display: block;
+}
