@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './style.css'; // Ensure this path matches your directory structure
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import './style.css';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from './firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,6 +15,19 @@ const Startup = () => {
     const toggleForm = () => {
         setIsSignUp(!isSignUp);
     };
+
+    const handlePasswordReset = async (e) => {
+        e.preventDefault();
+        try {
+            await sendPasswordResetEmail(auth, email);
+            alert('Password reset email sent!');
+        } catch (error) {
+            console.error('Error during password reset:', error.message);
+            alert(error.message);
+        }
+    };
+
+    
 
     const handleGoogleLogin = async () => {
         try {
@@ -104,7 +117,7 @@ const Startup = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <a href="#">Forget Your Password?</a>
+                    <a href="#" onClick={handlePasswordReset}>Forget Your Password?</a>
                     <button type="submit">Login</button>
                 </form>
             </div>
