@@ -33,7 +33,7 @@ const Startup = () => {
         try {
             const result = await signInWithPopup(auth, googleProvider);
             console.log('Google login successful:', result.user);
-            navigate('/home');
+            navigate('/');
         } catch (error) {
             console.error('Error during Google login:', error.message);
         }
@@ -44,7 +44,7 @@ const Startup = () => {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             console.log('Registration successful:', userCredential.user);
-            navigate('/home');
+            navigate('/');
         } catch (error) {
             console.error('Error during registration:', error.message);
             alert(error.message);
@@ -56,7 +56,7 @@ const Startup = () => {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             console.log('Login successful:', userCredential.user);
-            navigate('/home');
+            navigate('/');
         } catch (error) {
             console.error('Error during login:', error.message);
             alert(error.message);

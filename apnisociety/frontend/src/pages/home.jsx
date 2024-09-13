@@ -4,6 +4,9 @@ import { onAuthStateChanged } from 'firebase/auth';
 import './Home-Css.css';
 import namelogo from '../Images/Only_name_logo.png';
 import logoo from '../Images/logoo.png';
+import Home_1 from '../Images/home_1.jpg';
+import Home_2 from '../Images/home_2.avif';
+import Home_3 from '../Images/home_3.jpg';
 import profileIcon from '../Images/profile_icon.png'; // Import your profile icon
 import { auth } from './firebaseConfig'; // Import Firebase auth
 
@@ -88,10 +91,13 @@ const HomePage = () => {
             {/* Slideshow Section */}
             <div className="slideshow-container">
                 <div className="slide fade">
-                    <img src="https://cdn.pixabay.com/photo/2020/04/25/19/56/city-5092432_640.jpg" alt="Slide 1" />
+                    <img src={Home_1} alt="Slide 1" />
                 </div>
                 <div className="slide fade">
-                    <img src="https://cdn.pixabay.com/photo/2017/06/16/23/04/papeete-2410620_640.jpg" alt="Slide 2" />
+                    <img src={Home_2} alt="Slide 2" />
+                </div>
+                <div className="slide fade">
+                    <img src={Home_3} alt="Slide 3" />
                 </div>
                 <div className="text-overlay">
                     <h3>AAPKI SOCIETY, AAPKA HAQ</h3>

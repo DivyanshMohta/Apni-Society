@@ -1,3 +1,12 @@
+/* Main container for the page layout */
+.dashboard-page {
+    display: flex;
+    flex-direction: row; /* Ensures the sidebar and main content are aligned side by side */
+    height: 100vh;
+    width: 100%; /* Full width of the viewport */
+}
+
+/* Sidebar (Dashboard) styling */
 .dashboard {
     width: 250px;
     background-color: #2c3e50;
@@ -8,6 +17,7 @@
     position: fixed;
     top: 0;
     left: 0;
+    overflow-y: auto; /* Allows scrolling if content exceeds viewport */
 }
 
 .dashboard-header {
@@ -21,64 +31,327 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
-
-.dashboard-top {
     padding: 20px;
 }
 
+.dashboard-bottom {
+    padding-bottom: 20px;
+}
+
+/* Styling for features inside the sidebar */
 .feature {
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.feature:hover {
+    background-color: #9d9999;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .feature span {
     margin-left: 10px;
-}
-
-.feature:hover {
-    background-color: #34495e;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .sub-menu {
+    margin-left: 30px;
     margin-top: 10px;
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
 }
 
 .sub-menu a {
-    padding: 5px 0;
-    color: white;
+    display: block;
+    padding: 8px;
     text-decoration: none;
-    transition: color 0.3s ease;
+    color: #333;
+    font-size: 14px;
 }
 
 .sub-menu a:hover {
-    color: #1abc9c;
+    color: #1e90ff;
 }
 
-.dashboard-bottom {
-    padding: 20px;
-    border-top: 1px solid #34495e;
-}
-
-.profile-icon,
-.settings-icon {
+.profile-icon, .settings-icon {
     display: flex;
     align-items: center;
     padding: 10px;
     cursor: pointer;
 }
 
-.profile-icon span,
-.settings-icon span {
+.profile-icon span, .settings-icon span {
     margin-left: 10px;
 }
 
-.profile-icon:hover,
-.settings-icon:hover {
+.profile-icon:hover, .settings-icon:hover {
     background-color: #34495e;
+}
+
+/* Main content area styling */
+.main-content {
+    width: 160vh;
+    margin-left: 250px; /* Ensures the content is placed next to the sidebar */
+    padding: 30px;
+    flex: 1;
+    background-color: #f4f4f4;
+    overflow-y: auto; /* Allows the main content to scroll */
+}
+
+/* Welcome section styling */
+.welcome-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.welcome-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.welcome-section p {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Notice Board styling */
+.notice-board {
+    background-color: #f0eace;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #070707;
+    max-width: 1000px; /* Limit width to make it centered and Instagram-like */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Form styling */
+.notice-board form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.notice-board textarea {
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    min-height: 120px;
+    transition: border-color 0.3s ease;
+}
+
+.notice-board textarea:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.notice-board input[type="file"] {
+    margin-bottom: 15px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.notice-board button {
+    background-color: #3498db;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.notice-board button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.notice-board h2 {
+    padding: 10px;
+}
+
+.file-input-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.file-input-label {
+    background-color: #268f31;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.file-input-label:hover {
+    background-color: #00b333;
+}
+
+.file-input-label input[type="file"] {
+    display: none; /* Hide the default file input */
+}
+
+.file-name {
+    margin-left: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.button-primary {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.button-primary:hover {
+    background-color: #218838;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+}
+
+/* Posted notices styling */
+.posted-notices {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Notice item styling */
+.notice-item {
+    background-color: #fcfcfc; /* Background color for each post */
+    padding: 20px;
+    margin-bottom: 20px; /* Adds space between posts */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-align: left; /* Align text to the left */
+    overflow: hidden;
+    position: relative; /* Ensure the content is relative to the box */
+}
+
+/* White separation between posts */
+.notice-item + .notice-item {
+    margin-top: 20px; /* Adds white space between posts */
+}
+
+.notice-item img {
+    width: 100%;
+    max-width: 600px; /* Limit image size */
+    height: auto;
+    transition: transform 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.notice-item img:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.notice-item p {
+    font-size: 16px;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Animation for new posts */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.notice-item {
+    animation: fadeIn 0.5s ease;
+}
+
+/* Styling for the profile picture in the notice-item */
+.posted_profile {
+    display: flex;
+    align-items: center; /* Vertically center the name with the profile image */
+    margin-bottom: 15px; /* Space between profile and content */
+}
+
+.posted_profile img {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    margin-right: 10px; /* Space between the image and the name */
+}
+
+.profile-name {
+    padding-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Wrapper for the notice content (image and text) */
+.notice-content {
+    text-align: center; 
+    padding: 10px;
+}
+
+.notice-content img {
+    padding-top: 20px;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    /* border-radius: 12px; */
+    margin-bottom: 15px;
+}
+
+/* Like and comment section at the bottom left */
+.notice-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.like-icon, .comment-icon {
+    color: #000000;
+    font-size: 18px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: transform 0.2s ease;
+}
+
+.like-icon:hover, .comment-icon:hover {
+    transform: scale(1.2); /* Slight zoom on hover */
+}
+
+.like-text, .comment-text {
+    font-size: 14px;
+    color: #333;
+    margin-right: 15px; /* Space between icons */
+}
+
+.notice-item {
+    padding-bottom: 40px; /* Add space at the bottom for the like and comment section */
 }
