@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import './style.css';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from './firebaseConfig';
+import { db } from './firebaseConfig';
+import { setDoc, doc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+// import bcrypt from 'bcrypt.js'
+
 
 const Startup = () => {
     const [isSignUp, setIsSignUp] = useState(false);
@@ -33,7 +37,7 @@ const Startup = () => {
         try {
             const result = await signInWithPopup(auth, googleProvider);
             console.log('Google login successful:', result.user);
-            navigate('/');
+            navigate('/detailform');
         } catch (error) {
             console.error('Error during Google login:', error.message);
         }
@@ -43,8 +47,15 @@ const Startup = () => {
         e.preventDefault();
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            // const encrypted = bcrypt.hashSync(password, 10);
+            await setDoc(doc(db, "Users", userCredential.user.uid), {
+                name: name,
+                email: email,
+                password: password,
+                userID: userCredential.user.uid
+            })
             console.log('Registration successful:', userCredential.user);
-            navigate('/');
+            navigate('/detailform');
         } catch (error) {
             console.error('Error during registration:', error.message);
             alert(error.message);

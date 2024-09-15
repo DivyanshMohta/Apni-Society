@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
 import './UserDetailsForm.css';
+import React, { useState } from 'react';
+import { db, storage } from './firebaseConfig';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { collection, addDoc, setDoc, doc } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 const UserDetailsForm = () => {
@@ -7,8 +12,7 @@ const UserDetailsForm = () => {
         name: '',
         username: '',
         contact: '',
-        profilePicture: null,
-        personName: ''
+        profilePicture: null
     });
 
     const [formErrors, setFormErrors] = useState({
@@ -32,6 +36,8 @@ const UserDetailsForm = () => {
         });
     };
 
+    const navigate = useNavigate();
+
     const validateForm = () => {
         let errors = {};
         if (!formData.name) errors.name = "Name is required.";
@@ -43,14 +49,49 @@ const UserDetailsForm = () => {
         return Object.keys(errors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (validateForm()) {
-            // Perform submission logic, e.g., send data to backend
-            console.log("Form submitted successfully", formData);
+            try {
+                const auth = getAuth();
+                const user = auth.currentUser;
+
+                if (!user) {
+                    console.error("No user signed.");
+                    return;
+                }
+
+                let profile = null;
+                if (formData.profilePicture) {
+                    const storageRef = ref(storage, `profilePicture/${user.uid}/${formData.profilePicture.name}`);
+                    await uploadBytes(storageRef, formData.profilePicture);
+                    profile = await getDownloadURL(storageRef);
+                }
+
+                await setDoc(doc(db, "Users", user.uid), {
+                    name: formData.name,
+                    username: formData.name,
+                    contact: formData.contact,
+                    profileURL: profile
+                }, {merge: true});
+
+                console.log("User details updated");
+                navigate('/dashboard');
+            } catch (error) {
+                console.error("Error adding document: ", error);
+            }
         }
     };
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+
+    //     if (validateForm()) {
+    //         // Perform submission logic, e.g., send data to backend
+    //         console.log("Form submitted successfully", formData);
+    //     }
+    // };
 
     return (
         <div className='form-container'>
@@ -104,17 +145,6 @@ const UserDetailsForm = () => {
                         id='profilePicture'
                         name='profilePicture'
                         onChange={handleProfilePictureChange}
-                    />
-                </div>
-
-                <div className='form-group'>
-                    <label htmlFor='personName'>Person's Name</label>
-                    <input
-                        type='text'
-                        id='personName'
-                        name='personName'
-                        value={formData.personName}
-                        onChange={handleInputChange}
                     />
                 </div>
 
