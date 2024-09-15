@@ -88,7 +88,9 @@ const Startup = () => {
                     <input
                         type="password"
                         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" 
-                        title="Must contain at least one uppercase letter, one lowercase letter, one number, and one special character, and be at least 8 characters long" 
+                        title="Must contain at least one uppercase letter, 
+                        one lowercase letter, one number, and one special character, 
+                        and be at least 8 characters long" 
                         required
                         placeholder="Password"
                         value={password}
