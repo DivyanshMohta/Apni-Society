@@ -7,6 +7,7 @@ import logoo from '../Images/logoo.png';
 import Home_1 from '../Images/home_1.jpg';
 import Home_2 from '../Images/home_2.avif';
 import Home_3 from '../Images/home_3.jpg';
+import AboutUs from '.././pages/Home-page-feat/aboutus';
 import profileIcon from '../Images/profile_icon.png'; // Import your profile icon
 import { auth } from './firebaseConfig'; // Import Firebase auth
 
@@ -49,7 +50,7 @@ const HomePage = () => {
     const handleLogout = () => {
         auth.signOut().then(() => {
             setIsLoggedIn(false);
-            navigate('/startup'); // Redirects to login after logout
+            navigate('/Startup'); // Redirects to login after logout
         });
     };
 
@@ -65,7 +66,7 @@ const HomePage = () => {
                     </a>
                 </div>
                 <div className="nav-links">
-                    <a href="#info">Home</a>
+                    <a href="#info">About Us</a>
                     <a href="#">Features</a>
                     <a href="#">Support</a>
                     <a href="#">Contact Us</a>
@@ -82,7 +83,7 @@ const HomePage = () => {
                         </>
                     ) : (
                         <div className='home-page_login_btn'>
-                            <button onClick={() => navigate('/startup')}>Login</button>
+                            <button onClick={() => navigate('/Startup')}>Login</button>
                         </div>
                     )}
                 </div>
@@ -104,6 +105,12 @@ const HomePage = () => {
                     <p>Connecting You with Your Community</p>
                 </div>
             </div>
+            <div className="content">
+            <section className="about-us">
+                <AboutUs />
+            </section>
+            </div>
+
         </div>
     );
 };

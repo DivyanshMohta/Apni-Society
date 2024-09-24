@@ -1,11 +1,11 @@
+// UserDetailsForm.js
 import './UserDetailsForm.css';
 import React, { useState } from 'react';
 import { db, storage } from './firebaseConfig';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { collection, addDoc, setDoc, doc } from 'firebase/firestore';
+import { setDoc, doc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-import { Navigate, useNavigate } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 const UserDetailsForm = () => {
     const [formData, setFormData] = useState({
@@ -58,7 +58,7 @@ const UserDetailsForm = () => {
                 const user = auth.currentUser;
 
                 if (!user) {
-                    console.error("No user signed.");
+                    console.error("No user signed in.");
                     return;
                 }
 
@@ -71,27 +71,18 @@ const UserDetailsForm = () => {
 
                 await setDoc(doc(db, "Users", user.uid), {
                     name: formData.name,
-                    username: formData.name,
+                    username: formData.username, // Corrected to use formData.username
                     contact: formData.contact,
                     profileURL: profile
-                }, {merge: true});
+                }, { merge: true });
 
                 console.log("User details updated");
-                navigate('/dashboard');
+                navigate('/');
             } catch (error) {
                 console.error("Error adding document: ", error);
             }
         }
     };
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-
-    //     if (validateForm()) {
-    //         // Perform submission logic, e.g., send data to backend
-    //         console.log("Form submitted successfully", formData);
-    //     }
-    // };
 
     return (
         <div className='form-container'>

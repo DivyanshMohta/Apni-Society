@@ -19,6 +19,7 @@ body, html {
     display: flex;
     flex-direction: column;
     width: 100vw;
+   
 }
 
 /* Navbar Styles */
@@ -125,7 +126,7 @@ body, html {
 .slideshow-container {
     position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
 }
 
@@ -169,4 +170,11 @@ body, html {
 @keyframes fadeEffect {
     from { opacity: 0.4 }
     to { opacity: 1 }
+}
+
+
+.content {
+    position: relative; /* Ensure content is positioned after slideshow */
+    padding-top: 20px;
+    z-index: 1;
 }

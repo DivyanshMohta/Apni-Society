@@ -329,6 +329,7 @@
 
 /* Like and comment section at the bottom left */
 .notice-actions {
+    padding-bottom: 15px;
     display: flex;
     align-items: center;
     margin-top: 10px;

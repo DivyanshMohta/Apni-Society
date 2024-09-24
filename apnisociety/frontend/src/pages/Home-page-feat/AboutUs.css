@@ -1,0 +1,77 @@
+.aboutus-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    background-color: #7e8c8b;  
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow to lift the section */
+   margin: 0; /* Remove margin to allow full-width */
+    width: 100vw; /* Make the section stretch across the entire viewport width */
+    max-width: 100%;
+}
+
+.aboutus-info {
+    width: 60%;
+    padding-right: 30px;
+    color: #f1f1f1; /* Neutral text color for readability */
+}
+
+.aboutus-info h2 {
+    font-size: 40px;
+    margin-bottom: 25px;
+    color: #f1f1f1; /* Darker shade for the heading */
+    font-weight: bold;
+    border-left: 5px solid #99ff00; /* Adds a blue vertical bar on the left */
+    padding-left: 15px; /* Spacing between the bar and text */
+}
+
+.aboutus-info p {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.8;
+    color: #e6f337; /* Lighter shade for paragraph text */
+    margin-bottom: 15px;
+    text-align: justify; /* Justified text for a clean layout */
+    letter-spacing: 0.5px; /* Slight spacing for readability */
+}
+
+.aboutus-info p strong {
+    color: #007BFF; /* Highlighted keywords in blue to match the theme */
+}
+
+.aboutus-info ul {
+    margin-top: 20px;
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.aboutus-info ul li {
+    font-size: 17px;
+    line-height: 1.6;
+    color: d1d1d1; /* Slightly darker for the list */
+    margin-bottom: 10px;
+}
+
+.aboutus-info ul li::marker {
+    color: #007BFF; /* Blue bullet points for consistency with the theme */
+}
+
+.aboutus-img {
+    width: 35%;
+    display: flex;
+    justify-content: center;
+}
+
+.aboutus-img img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15); /* Drop shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.aboutus-img img:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+}

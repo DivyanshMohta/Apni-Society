@@ -1,0 +1,29 @@
+/* GuestInOut.css */
+.guest-in-out {
+    padding: 20px;
+}
+
+.guest-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.guest-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    gap: 10px;
+}
+
+.guest-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.guest-info p {
+    margin: 0;
+}
