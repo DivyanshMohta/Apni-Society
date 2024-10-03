@@ -7,13 +7,17 @@ import logoo from '../Images/logoo.png';
 import Home_1 from '../Images/home_1.jpg';
 import Home_2 from '../Images/home_2.avif';
 import Home_3 from '../Images/home_3.jpg';
-import AboutUs from '.././pages/Home-page-feat/aboutus';
-import profileIcon from '../Images/profile_icon.png'; // Import your profile icon
-import { auth } from './firebaseConfig'; // Import Firebase auth
+import AboutUs from './Home-page-feat/aboutus';
+import Services from './Home-page-feat/services';
+import ContactUs from './Home-page-feat/contactus';
+import Footer from './Home-page-feat/footer';
+import profileIcon from '../Images/profile_icon.png'; 
+import { auth } from './firebaseConfig';
 
 const HomePage = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [slideIndex, setSlideIndex] = useState(0); // State for slideshow index
+    // State for slideshow index
+    const [slideIndex, setSlideIndex] = useState(0); 
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -54,6 +58,8 @@ const HomePage = () => {
         });
     };
 
+
+
     return (
         <div className="home-container">
             <nav className="navbar">
@@ -66,10 +72,10 @@ const HomePage = () => {
                     </a>
                 </div>
                 <div className="nav-links">
-                    <a href="#info">About Us</a>
-                    <a href="#">Features</a>
-                    <a href="#">Support</a>
-                    <a href="#">Contact Us</a>
+                    <a href="#about-us">About Us</a>
+                    <a href="#services">Services</a>
+                    <a href="#footer">Support</a>
+                    <a href="#contact-us">Contact Us</a>
                     {isLoggedIn ? (
                         <>
                             <a href="Dashboard" onClick={() => navigate('/Dashboard')}>Dashboard</a>
@@ -106,10 +112,26 @@ const HomePage = () => {
                 </div>
             </div>
             <div className="content">
-            <section className="about-us">
+            <section id="about-us">
                 <AboutUs />
             </section>
-            </div>
+            <section id="services">
+                <div>
+                    <h2>Services We Provide</h2>
+                </div>
+                <Services />
+            </section>
+            <section id="contact-us">
+                <ContactUs />
+            </section>
+            <section id="footer">
+                <Footer />
+            </section>
+        </div>
+        <div className="back-to-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            ↑
+        </div>
+
 
         </div>
     );

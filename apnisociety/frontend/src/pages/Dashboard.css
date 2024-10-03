@@ -48,6 +48,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: all 0.2s ease;
+    position: relative;
 }
 
 .feature:hover {
@@ -62,16 +63,26 @@
 }
 
 .sub-menu {
-    margin-left: 30px;
-    margin-top: 10px;
+    display: flex;
+    flex-direction: column; /* Ensure the submenu items are in a column */
+    position: absolute; /* Position relative to the feature item */
+    top: 60px; /* Adjust this value if necessary to position right under the Services tab */
+    left: 0;
+    background-color: #34495e; /* Match dashboard background */
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    padding: 10px 0;
+    z-index: 10; /* Ensure it appears above other elements */
 }
 
 .sub-menu a {
-    display: block;
-    padding: 8px;
+    padding: 10px 20px;
     text-decoration: none;
-    color: #333;
+    color: white;
     font-size: 14px;
+    display: block;
+    transition: background-color 0.2s ease;
 }
 
 .sub-menu a:hover {
@@ -124,7 +135,7 @@
 
 /* Notice Board styling */
 .notice-board {
-    background-color: #f0eace;
+    background-color: #ece6cc;
     padding: 20px;
     margin-top: 20px;
     border-radius: 12px;
@@ -356,3 +367,6 @@
 .notice-item {
     padding-bottom: 40px; /* Add space at the bottom for the like and comment section */
 }
+
+
+

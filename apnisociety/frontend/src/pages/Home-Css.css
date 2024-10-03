@@ -94,6 +94,7 @@ body, html {
 
 .home-page_login_btn {
     margin-left: 20px;
+    padding-bottom: 15px;
 }
 
 .home-page_login_btn button {
@@ -178,3 +179,22 @@ body, html {
     padding-top: 20px;
     z-index: 1;
 }
+
+#services h2 {
+    font-size: 32px; /* Adjust size as needed */
+    font-weight: bold; /* Make the text bold */
+    color: #000000; /* Use a color that fits the homepage theme */
+    text-align: center; /* Center-align the text */
+    margin: 40px 0; /* Add space above and below */
+    position: relative; /* Allow for pseudo-elements if needed */
+}
+
+#services h2::after {
+    content: "";
+    display: block;
+    width: 60%; /* Control the width of the line */
+    height: 3px; /* Height of the line */
+    background: #ff1e1e; /* Same color as the text */
+    margin: 10px auto; /* Center it and add margin */
+}
+

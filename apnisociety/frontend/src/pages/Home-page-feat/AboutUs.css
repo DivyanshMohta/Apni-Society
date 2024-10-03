@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 50px;
-    background-color: #7e8c8b;  
+    /* background-color: #7e8c8b;   */
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow to lift the section */
    margin: 0; /* Remove margin to allow full-width */
     width: 100vw; /* Make the section stretch across the entire viewport width */
@@ -14,12 +14,14 @@
     width: 60%;
     padding-right: 30px;
     color: #f1f1f1; /* Neutral text color for readability */
+    border-right: 5px solid #27c3dc; /* Blue border on the right side */
+    padding-right: 30px; /* Space between text and the border */
 }
 
 .aboutus-info h2 {
     font-size: 40px;
     margin-bottom: 25px;
-    color: #f1f1f1; /* Darker shade for the heading */
+    color: #000000; /* Darker shade for the heading */
     font-weight: bold;
     border-left: 5px solid #99ff00; /* Adds a blue vertical bar on the left */
     padding-left: 15px; /* Spacing between the bar and text */
@@ -29,7 +31,7 @@
     font-size: 20px;
     font-weight: 600;
     line-height: 1.8;
-    color: #e6f337; /* Lighter shade for paragraph text */
+    color: #000000; /* Lighter shade for paragraph text */
     margin-bottom: 15px;
     text-align: justify; /* Justified text for a clean layout */
     letter-spacing: 0.5px; /* Slight spacing for readability */

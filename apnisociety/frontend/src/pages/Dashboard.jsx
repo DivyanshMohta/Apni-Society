@@ -21,6 +21,7 @@ const Dashboard = () => {
     const [errorMessage, setErrorMessage] = useState(''); // To display an error when only an image is posted
     const [currentComment, setCurrentComment] = useState({});
     const [username, setUsername] = useState(''); // State for the username
+    const [commentVisibility, setCommentVisibility] = useState({}); 
 
     const auth = getAuth(); // Initialize Firebase Auth
 
@@ -95,7 +96,7 @@ const Dashboard = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         if (!noticeText && !noticeImage) {
             setErrorMessage('Please write something before posting.');
             return;
@@ -103,34 +104,38 @@ const Dashboard = () => {
             setErrorMessage('Please write something along with the image.');
             return;
         }
-
+    
         try {
+            // Variable to hold the image URL
+            let imageUrl = null;
+    
             // Upload image to Firebase Storage if present
-            let uploadedImageName = null;
             if (noticeImage) {
-                const storageRef = ref(storage, `noticeImages/${noticeImage.name}_${Date.now()}`);
-                await uploadBytes(storageRef, noticeImage);
-                uploadedImageName = `${noticeImage.name}_${Date.now()}`; // To ensure unique filenames
+                const imageName = `${noticeImage.name}_${Date.now()}`; // Generate unique filename
+                const storageRef = ref(storage, `noticeImages/${imageName}`);
+                
+                // Upload the image and get its URL
+                const snapshot = await uploadBytes(storageRef, noticeImage);
+                imageUrl = await getDownloadURL(snapshot.ref); // Get the URL of the uploaded image
             }
-
+    
             // Add new notice to Firestore
             const newNotice = {
                 username: username || 'Anonymous', // Use fetched username or default to 'Anonymous'
                 text: noticeText,
                 agreeCount: 0,
                 comments: [],
-                imageName: uploadedImageName || null, // Store image name if uploaded
+                imageUrl: imageUrl || null, // Store image URL if uploaded
                 timestamp: serverTimestamp()
             };
-
+    
             const docRef = await addDoc(collection(db, 'notices'), newNotice);
             console.log("Document written with ID: ", docRef.id);
-
+    
             // Update the local state with the new notice
-            const imageUrl = uploadedImageName ? await getDownloadURL(ref(storage, `noticeImages/${uploadedImageName}`)) : null;
             const updatedNotice = { id: docRef.id, ...newNotice, imageUrl, timestamp: new Date() };
             setNotices([updatedNotice, ...notices]);
-
+    
             // Reset form fields
             setNoticeText('');
             setNoticeImage(null);
@@ -140,7 +145,7 @@ const Dashboard = () => {
             console.error("Error adding new notice:", error);
         }
     };
-
+    
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -213,12 +218,14 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard-page">
+            
             <div className="dashboard">
                 <div className="dashboard-header">
                     <h1>Dashboard</h1>
                 </div>
 
                 <div className="dashboard-content">
+                    
                     <div className="dashboard-top">
                         <div className="feature" onClick={toggleNoticeForm}>
                             <FontAwesomeIcon icon={faClipboard} />
@@ -228,19 +235,18 @@ const Dashboard = () => {
                         <div className="feature" onClick={handleGuestInOutClick}>
                             <FontAwesomeIcon icon={faSignInAlt} />
                             <span>Guest In/Out Details</span>
-                        </div>
-
-                        <div className="feature" onClick={toggleSubMenu}>
-                            <FontAwesomeIcon icon={faConciergeBell} />
-                            <span>Services</span>
-                            {showSubMenu && (
-                                <div className="sub-menu">
-                                    <a href="#">Vegetable Vendors</a>
-                                    <a href="#">Parking Services</a>
-                                    <a href="#">Laundry</a>
-                                </div>
-                            )}
-                        </div>
+                        </div>  
+                    <div className={`feature ${showSubMenu ? 'show-submenu' : ''}`} onClick={toggleSubMenu}>
+                        <FontAwesomeIcon icon={faConciergeBell} />
+                        <span>Services</span>
+                        {showSubMenu && (
+                            <div className="sub-menu">
+                                <a href="#">Vegetable Vendors</a>
+                                <a href="#">Parking Services</a>
+                                <a href="#">Laundry</a>
+                            </div>
+                        )}
+                    </div>
                     </div>
 
                     <div className="dashboard-bottom">
@@ -326,6 +332,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
+            
         </div>
     );
 };

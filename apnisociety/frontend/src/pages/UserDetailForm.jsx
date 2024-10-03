@@ -1,4 +1,3 @@
-// UserDetailsForm.js
 import './UserDetailsForm.css';
 import React, { useState } from 'react';
 import { db, storage } from './firebaseConfig';
@@ -40,9 +39,15 @@ const UserDetailsForm = () => {
 
     const validateForm = () => {
         let errors = {};
+        const contactRegex = /^\d{10}$/; // Regex for 10-digit contact number
+
         if (!formData.name) errors.name = "Name is required.";
         if (!formData.username) errors.username = "Username is required.";
-        if (!formData.contact) errors.contact = "Contact number is required.";
+        if (!formData.contact) {
+            errors.contact = "Contact number is required.";
+        } else if (!contactRegex.test(formData.contact)) {
+            errors.contact = "Contact must be a 10-digit number.";
+        }
 
         setFormErrors(errors);
 
@@ -71,7 +76,7 @@ const UserDetailsForm = () => {
 
                 await setDoc(doc(db, "Users", user.uid), {
                     name: formData.name,
-                    username: formData.username, // Corrected to use formData.username
+                    username: formData.username,
                     contact: formData.contact,
                     profileURL: profile
                 }, { merge: true });
@@ -85,7 +90,10 @@ const UserDetailsForm = () => {
     };
 
     return (
-        <div className='form-container'>
+        <div className='userform-container'>
+            <div>
+                <h2>Fill User Profile</h2>
+            </div>
             <form onSubmit={handleSubmit} className='user-details-form'>
                 <div className='form-group'>
                     <label htmlFor='name'>Name</label>

@@ -1,0 +1,100 @@
+/* Main Contact Us Container */
+.contact-container {
+    max-width: 800px;
+    margin: 80px auto;
+    padding: 30px;
+    background: linear-gradient(to right, #c9d6ff, #e2e2e2); /* Matching homepage background gradient */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease;
+}
+
+.contact-container:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.contact-container h2 {
+    text-align: center;
+    font-size: 32px;
+    color: #333; /* Darker color for title */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+
+/* Form styling */
+.contact-form .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form label {
+    font-size: 16px;
+    color: #555; /* Muted color for labels */
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #1e90ff; /* Blue color on focus to match homepage style */
+    box-shadow: 0 4px 8px rgba(30, 144, 255, 0.2); /* Soft blue shadow */
+}
+
+.contact-form textarea {
+    resize: vertical;
+    height: 150px;
+}
+
+/* Button styling */
+.contact-form button {
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+}
+
+.contact-form button:hover {
+    background-color: #005bb5;
+    transform: translateY(-3px);
+}
+
+.contact-form button:active {
+    background-color: #003f7f;
+    transform: translateY(0);
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .contact-container {
+        padding: 20px;
+        margin: 50px 15px;
+    }
+
+    .contact-container h2 {
+        font-size: 28px;
+    }
+
+    .contact-form button {
+        padding: 12px 0;
+        font-size: 16px;
+    }
+}
