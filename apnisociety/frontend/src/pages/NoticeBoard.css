@@ -1,0 +1,403 @@
+/* Main container for the page layout */
+.dashboard-page {
+    display: flex;
+    flex-direction: row; /* Ensures the sidebar and main content are aligned side by side */
+    height: 100vh;
+    width: 100%; /* Full width of the viewport */
+}
+
+/* Sidebar (Dashboard) styling */
+.dashboard {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto; /* Allows scrolling if content exceeds viewport */
+}
+
+.dashboard-header {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #34495e;
+}
+
+.dashboard-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.dashboard-bottom {
+    padding-bottom: 20px;
+}
+
+/* Styling for features inside the sidebar */
+.feature {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.feature:hover {
+    background-color: #9d9999;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.feature span {
+    margin-left: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.sub-menu {
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.sub-menu a {
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.sub-menu a:hover {
+    color: #1e90ff;
+}
+
+.profile-icon, .settings-icon {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.profile-icon span, .settings-icon span {
+    margin-left: 10px;
+}
+
+.profile-icon:hover, .settings-icon:hover {
+    background-color: #34495e;
+}
+
+/* Main content area styling */
+.main-content {
+    width: 160vh;
+    margin-left: 250px; /* Ensures the content is placed next to the sidebar */
+    padding: 30px;
+    flex: 1;
+    background-color: #f4f4f4;
+    overflow-y: auto; /* Allows the main content to scroll */
+}
+
+/* Welcome section styling */
+.welcome-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.welcome-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.welcome-section p {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Notice Board styling */
+.notice-board {
+    background-color: #f0eace;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #070707;
+    max-width: 1000px; /* Limit width to make it centered and Instagram-like */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Form styling */
+.notice-board form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.notice-board textarea {
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    min-height: 120px;
+    transition: border-color 0.3s ease;
+}
+
+.notice-board textarea:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.notice-board input[type="file"] {
+    margin-bottom: 15px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.notice-board button {
+    background-color: #3498db;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.notice-board button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.notice-board h2 {
+    padding: 10px;
+}
+
+.file-input-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.file-input-label {
+    background-color: #268f31;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.file-input-label:hover {
+    background-color: #00b333;
+}
+
+.file-input-label input[type="file"] {
+    display: none; /* Hide the default file input */
+}
+
+.file-name {
+    margin-left: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.button-primary {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.button-primary:hover {
+    background-color: #218838;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+}
+
+
+/* Main content area styling */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    margin-left: 260px;
+    background-color: #f7f9fc; /* Light background for content */
+    overflow-y: auto;
+}
+
+.notice-board {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+.notice-board h2 {
+    font-size: 22px;
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.notice-board form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.notice-board textarea {
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    resize: vertical;
+    min-height: 120px;
+    transition: border-color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.notice-board textarea:focus {
+    border-color: #1abc9c;
+    outline: none;
+}
+
+.file-input-container {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.file-input-label {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.file-input-label:hover {
+    background-color: #2980b9;
+}
+
+.file-name {
+    margin-left: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Buttons */
+.notice-board button {
+    background-color: #1abc9c;
+    color: white;
+    padding: 14px;
+    margin: 20px;
+    border: none;
+    gap: 50px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.notice-board button:hover {
+    background-color: #16a085;
+    transform: translateY(-2px);
+}
+
+/* Posted notices styling */
+.posted-notices {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Notice item styling */
+.notice-item {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.notice-item:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.notice-item img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.notice-item p {
+    font-size: 18px;
+    color: #333;
+    margin-top: 10px;
+}
+
+.posted_profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.posted_profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profile-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.notice-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.like-icon, .comment-icon {
+    font-size: 20px;
+    color: #2c3e50;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.like-icon:hover, .comment-icon:hover {
+    transform: scale(1.1);
+}
+
+.like-text, .comment-text {
+    font-size: 16px;
+    color: #555;
+}

@@ -1,0 +1,36 @@
+.kirana-store-section {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .kirana-store-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .product-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-card h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .product-card p {
+    margin: 5px 0 0;
+    color: #666;
+  }
+  

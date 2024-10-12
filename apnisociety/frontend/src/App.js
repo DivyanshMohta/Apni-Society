@@ -8,6 +8,8 @@ import UserDetailsForm from './pages/UserDetailForm';
 import GuestInOut from './pages/GuestInOut';
 import AboutUs from './pages/Home-page-feat/aboutus';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Maintainess from './pages/maintainess';
+import KiranaStore from './pages/KiranaStore';
 
 const App = () => {
     const [user, setUser] = React.useState(null);
@@ -38,8 +40,12 @@ const App = () => {
                 <Route path="/detailform" element={
                     user ? <UserDetailsForm /> : <Navigate to="/login" />
                 } />
+                <Route path="/kirana-store" element={<KiranaStore />} />
                 <Route path="/GuestInOut" element={<GuestInOut />}></Route>
-                <Route path="/aboutus" element={<AboutUs />} />
+                <Route path="/Maintainess" element={<Maintainess />}></Route>
+                <Route path="/aboutus" element={<AboutUs />}
+                 />
+                 
             </Routes>
         </Router>
     );
