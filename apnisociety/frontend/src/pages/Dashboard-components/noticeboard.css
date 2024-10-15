@@ -1,0 +1,219 @@
+/* Notice Board styling */
+.notice-board {
+    background-color: #ece6cc;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #070707;
+    max-width: 1000px; /* Limit width to make it centered and Instagram-like */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Form styling */
+.notice-board form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.notice-board textarea {
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    min-height: 120px;
+    transition: border-color 0.3s ease;
+}
+
+.notice-board textarea:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.notice-board input[type="file"] {
+    margin-bottom: 15px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.notice-board button {
+    background-color: #3498db;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.notice-board button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.notice-board h2 {
+    padding: 10px;
+}
+
+.file-input-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.file-input-label {
+    background-color: #268f31;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.file-input-label:hover {
+    background-color: #00b333;
+}
+
+.file-input-label input[type="file"] {
+    display: none; /* Hide the default file input */
+}
+
+.file-name {
+    margin-left: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.button-primary {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.button-primary:hover {
+    background-color: #218838;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+}
+
+/* Posted notices styling */
+.posted-notices {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Notice item styling */
+.notice-item {
+    background-color: #fcfcfc; /* Background color for each post */
+    padding: 20px;
+    margin-bottom: 20px; /* Adds space between posts */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-align: left; /* Align text to the left */
+    overflow: hidden;
+    position: relative; /* Ensure the content is relative to the box */
+}
+
+/* White separation between posts */
+.notice-item + .notice-item {
+    margin-top: 20px; /* Adds white space between posts */
+}
+
+.notice-item img {
+    width: 100%;
+    max-width: 600px; /* Limit image size */
+    height: auto;
+    transition: transform 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.notice-item img:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.notice-item p {
+    font-size: 20px;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Animation for new posts */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.notice-item {
+    animation: fadeIn 0.5s ease;
+}
+
+/* Styling for the profile picture in the notice-item */
+.posted_profile {
+    display: flex;
+    align-items: center; /* Vertically center the name with the profile image */
+    margin-bottom: 15px; /* Space between profile and content */
+}
+
+.posted_profile img {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    margin-right: 10px; /* Space between the image and the name */
+}
+
+.profile-name {
+    padding-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Wrapper for the notice content (image and text) */
+.notice-content {
+    text-align: center; 
+    padding: 10px;
+}
+
+.notice-content img {
+    padding: 5px;
+    margin: auto; /* Center image within its container */
+    border-radius: 8px; /* Rounded corners for images */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for images */
+}
+
+/* For mobile responsiveness */
+@media (max-width: 768px) {
+    .dashboard-page {
+        flex-direction: column; /* Stacks elements vertically */
+    }
+
+    .dashboard {
+        width: 100%; /* Full width on smaller screens */
+        height: auto; /* Allow auto height */
+    }
+
+    .main-content {
+        /* z-index: 1 !important; */
+        margin-left: 0; /* Remove left margin on smaller screens */
+    }
+}

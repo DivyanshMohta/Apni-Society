@@ -128,11 +128,6 @@ const HomePage = () => {
                 <Footer />
             </section>
         </div>
-        <div className="back-to-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            ↑
-        </div>
-
-
         </div>
     );
 };

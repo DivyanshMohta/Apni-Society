@@ -1,7 +1,7 @@
 // GuestInOut.js
 import React, { useState, useEffect } from 'react';
 import './GuestInOut.css';
-import { db, storage } from './firebaseConfig'; // Assuming you're using firebase
+import { db, storage } from '../firebaseConfig'; // Assuming you're using firebase
 import { collection, getDocs } from 'firebase/firestore';
 import { ref, getDownloadURL } from 'firebase/storage';
 

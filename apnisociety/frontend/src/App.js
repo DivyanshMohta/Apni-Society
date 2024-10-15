@@ -5,7 +5,8 @@ import Home from './pages/home'
 import Startup from './pages/Startup';
 import Dashboard from './pages/Dashboard';
 import UserDetailsForm from './pages/UserDetailForm';
-import GuestInOut from './pages/GuestInOut';
+import NoticeBoard from './pages/Dashboard-components/noticeboard';
+import GuestInOut from './pages/Dashboard-components/GuestInOut';
 import AboutUs from './pages/Home-page-feat/aboutus';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -39,6 +40,7 @@ const App = () => {
                     user ? <UserDetailsForm /> : <Navigate to="/login" />
                 } />
                 <Route path="/GuestInOut" element={<GuestInOut />}></Route>
+                <Route path="/noticeboard" element={<NoticeBoard />}></Route>
                 <Route path="/aboutus" element={<AboutUs />} />
             </Routes>
         </Router>
