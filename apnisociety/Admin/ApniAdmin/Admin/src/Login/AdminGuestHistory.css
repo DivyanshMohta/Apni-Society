@@ -1,0 +1,44 @@
+.admin-guest-history {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .admin-guest-history h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .guest-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .guest-history-table th,
+  .guest-history-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .guest-history-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .guest-history-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .guest-history-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .guest-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  

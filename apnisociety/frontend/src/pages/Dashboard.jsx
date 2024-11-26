@@ -3,15 +3,11 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate for routin
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Services from "./Services/Services";
 import Maintainess from "./Services/maintainess";
+import Meeting from "./Services/Meeting";
 import UserProfile from "./Services/UserProfile";
 import GuestInOut from "./Dashboard-components/GuestInOut";
-import {
-  faSignInAlt,
-  faConciergeBell,
-  faUser,
-  faCog,
-  faClipboard,
-} from "@fortawesome/free-solid-svg-icons";
+import {faSignInAlt,faConciergeBell,faUser,faCog,faClipboard,facalendar, faCalendar} 
+from "@fortawesome/free-solid-svg-icons";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "./firebaseConfig"; // Firebase config file
@@ -76,6 +72,8 @@ const Dashboard = () => {
         return   <Services />;
       case "UserProfile":
         return<UserProfile />;
+      case "Meeting":
+        return<Meeting />;
       default:
         return <div>Select a feature</div>;
     }
@@ -109,6 +107,10 @@ const Dashboard = () => {
             <div className="feature" onClick={() => setCurrentFragment("UserProfile")}>
               <FontAwesomeIcon icon={faUser} />
               <p>User Profile</p>
+            </div>
+            <div className="feature" onClick={() => setCurrentFragment("Meeting")}>
+              <FontAwesomeIcon icon={faCalendar} />
+              <p>Meeting/Event Scheluder</p>
             </div>
           </div>
 

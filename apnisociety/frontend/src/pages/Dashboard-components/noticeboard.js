@@ -20,12 +20,34 @@ const NoticeBoard = ({ username }) => {
         fetchNotices();
     }, []);
 
+    // const fetchNotices = async () => {
+    //     try {
+    //         const noticeList = [];
+    //         const q = query(collection(db, 'notices'));
+    //         const querySnapshot = await getDocs(q);
+
+    //         for (const docSnap of querySnapshot.docs) {
+    //             const noticeData = docSnap.data();
+    //             let imageUrl = null;
+    //             if (noticeData.imageName) {
+    //                 const imageRef = ref(storage, `noticeImages/${noticeData.imageName}`);
+    //                 imageUrl = await getDownloadURL(imageRef);
+    //             }
+    //             noticeList.push({ id: docSnap.id, ...noticeData, imageUrl });
+    //         }
+    //         noticeList.sort((a, b) => b.timestamp - a.timestamp);
+    //         setNotices(noticeList);
+    //     } catch (error) {
+    //         console.error("Error fetching notices:", error);
+    //     }
+    // };
+
     const fetchNotices = async () => {
         try {
             const noticeList = [];
             const q = query(collection(db, 'notices'));
             const querySnapshot = await getDocs(q);
-
+    
             for (const docSnap of querySnapshot.docs) {
                 const noticeData = docSnap.data();
                 let imageUrl = null;
@@ -33,6 +55,7 @@ const NoticeBoard = ({ username }) => {
                     const imageRef = ref(storage, `noticeImages/${noticeData.imageName}`);
                     imageUrl = await getDownloadURL(imageRef);
                 }
+                console.log(noticeList);
                 noticeList.push({ id: docSnap.id, ...noticeData, imageUrl });
             }
             noticeList.sort((a, b) => b.timestamp - a.timestamp);
@@ -78,16 +101,78 @@ const NoticeBoard = ({ username }) => {
         }
     };
 
+    // const handleAgree = async (noticeId, currentAgreeCount) => {
+    //     const newAgreeCount = currentAgreeCount + 1;
+    //     const noticeRef = doc(db, 'notices', noticeId);
+    //     await updateDoc(noticeRef, { agreeCount: newAgreeCount });
+    //     setNotices(prevNotices =>
+    //         prevNotices.map(notice =>
+    //             notice.id === noticeId ? { ...notice, agreeCount: newAgreeCount } : notice
+    //         )
+    //     );
+    // };
+
     const handleAgree = async (noticeId, currentAgreeCount) => {
-        const newAgreeCount = currentAgreeCount + 1;
+        const userId = "currentUserId"; // Replace with actual user ID from authentication context
         const noticeRef = doc(db, 'notices', noticeId);
-        await updateDoc(noticeRef, { agreeCount: newAgreeCount });
-        setNotices(prevNotices =>
-            prevNotices.map(notice =>
-                notice.id === noticeId ? { ...notice, agreeCount: newAgreeCount } : notice
-            )
-        );
+    
+        try {
+            const noticeSnapshot = await getDoc(noticeRef);
+    
+            if (!noticeSnapshot.exists()) {
+                console.error(`Notice with ID ${noticeId} does not exist`);
+                return;
+            }
+    
+            const noticeData = noticeSnapshot.data();
+    
+            // Ensure fields have default values
+            const currentAgreeList = noticeData.agreeList || [];
+            const currentAgreeCountSafe = noticeData.agreeCount ?? 0;
+    
+            // Check if the user has already agreed
+            const hasAgreed = currentAgreeList.includes(userId);
+    
+            let updatedAgreeList;
+            let updatedAgreeCount;
+    
+            if (hasAgreed) {
+                // User is removing their agreement
+                updatedAgreeList = currentAgreeList.filter(id => id !== userId);
+                updatedAgreeCount = Math.max(currentAgreeCountSafe - 1, 0); // Prevent negative count
+            } else {
+                // User is adding their agreement
+                updatedAgreeList = [...currentAgreeList, userId];
+                updatedAgreeCount = currentAgreeCountSafe + 1;
+            }
+    
+            // Validate fields before updating Firestore
+            if (updatedAgreeCount === undefined || !Array.isArray(updatedAgreeList)) {
+                console.error("Invalid data: agreeCount or agreeList is undefined");
+                return;
+            }
+    
+            // Update Firestore document
+            await updateDoc(noticeRef, {
+                agreeCount: updatedAgreeCount,
+                agreeList: updatedAgreeList,
+            });
+    
+            // Update local state
+            setNotices(prevNotices =>
+                prevNotices.map(notice =>
+                    notice.id === noticeId
+                        ? { ...notice, agreeCount: updatedAgreeCount }
+                        : notice
+                )
+            );
+        } catch (error) {
+            console.error("Error updating document:", error);
+        }
     };
+    
+    
+    
 
     const handleCommentSubmit = async (e, noticeId) => {
         e.preventDefault();

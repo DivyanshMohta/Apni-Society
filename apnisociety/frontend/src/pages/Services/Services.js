@@ -4,7 +4,7 @@ import KiranaStore from "./KiranaStore";
 import KiranaAdmin from "./kirnaadmin";
 import ElectricianServices from "./ElectricianServices"; // Import Electrician Services component
 import ElectricianAdmin from "./ElectricianAdmin"; // Import Electrician Admin component
-import SecurityInOut from "./SecurityInOut"; // Import Security In/Out component
+
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState(null);
@@ -18,7 +18,7 @@ const Services = () => {
     { title: "Grocery", description: "Order groceries and get them delivered." },
     { title: "Kirana Store", description: "Order daily essentials from the local Kirana store." },
     { title: "Kirana Admin", description: "Admin panel to manage Kirana store products and orders." },
-    { title: "Security In/Out", description: "Manage security in/out records for guests and visitors." } // New Security In/Out service
+     // New Security In/Out service
   ];
 
   const handleServiceClick = (service) => {
@@ -64,8 +64,6 @@ const Services = () => {
         <ElectricianServices />
       ) : selectedService === "ElectricianAdmin" ? (
         <ElectricianAdmin />
-      ) : selectedService === "SecurityInOut" ? (
-        <SecurityInOut /> // Render SecurityInOut component when selected
       ) : (
         <div className="service-details">
           <h3>{selectedService.title}</h3>

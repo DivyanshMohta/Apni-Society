@@ -12,6 +12,8 @@ const ElectricianServices = () => {
   const [message, setMessage] = useState("");
   const [appointments, setAppointments] = useState([]); // Store fetched appointments
   const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState("current");
+
 
   // Function to handle form submission
   const handleAppointmentSubmit = async (e) => {
@@ -140,32 +142,82 @@ const ElectricianServices = () => {
       {message && <p className="appointment-message">{message}</p>}
 
       <h3>Your Appointments</h3>
-      {loading ? (
-        <p>Loading your appointments...</p>
-      ) : appointments.length > 0 ? (
-        <div className="appointments-list">
-          {appointments.map((appointment) => (
-            <div key={appointment.id} className="appointment-card">
-              <p><strong>Name:</strong> {appointment.name}</p>
-              <p><strong>Contact:</strong> {appointment.contact}</p>
-              <p><strong>Appointment Date:</strong> {appointment.appointmentDate}</p>
-              <p><strong>Wing:</strong> {appointment.wing}</p>
-              <p><strong>Flat:</strong> {appointment.flat}</p>
-              <p><strong>Status:</strong> {appointment.appointmentStatus}</p>
-              {appointment.appointmentStatus === "Pending" && (
+<div className="tabs">
+  <button
+    className={`tab-btn ${activeTab === "current" ? "active" : ""}`}
+    onClick={() => setActiveTab("current")}
+  >
+    Current Appointments
+  </button>
+  <button
+    className={`tab-btn ${activeTab === "history" ? "active" : ""}`}
+    onClick={() => setActiveTab("history")}
+  >
+    Appointment History
+  </button>
+</div>
+
+{loading ? (
+  <p>Loading your appointments...</p>
+) : (
+  <div>
+    {activeTab === "current" && (
+      <div className="appointments-list">
+        {appointments.filter((appointment) => appointment.appointmentStatus === "Pending").length > 0 ? (
+          appointments
+            .filter((appointment) => appointment.appointmentStatus === "Pending")
+            .map((appointment) => (
+              <div key={appointment.id} className="appointment-card">
+                <p><strong>Name:</strong> {appointment.name}</p>
+                <p><strong>Contact:</strong> {appointment.contact}</p>
+                <p><strong>Appointment Date:</strong> {appointment.appointmentDate}</p>
+                <p><strong>Wing:</strong> {appointment.wing}</p>
+                <p><strong>Flat:</strong> {appointment.flat}</p>
+                <p><strong>Status:</strong> {appointment.appointmentStatus}</p>
                 <button
                   className="cancel-btn"
                   onClick={() => handleCancelAppointment(appointment.id)}
                 >
                   Cancel Appointment
                 </button>
-              )}
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p>No appointments found.</p>
-      )}
+              </div>
+            ))
+        ) : (
+          <p>No current appointments found.</p>
+        )}
+      </div>
+    )}
+
+{activeTab === "history" && (
+  <div className="appointments-list">
+    {appointments.filter((appointment) => appointment.appointmentStatus !== "Pending").length > 0 ? (
+      appointments
+        .filter((appointment) => appointment.appointmentStatus !== "Pending")
+        .sort((a, b) => {
+          const dateA = a.createdAt.toDate ? a.createdAt.toDate() : new Date(a.createdAt);
+          const dateB = b.createdAt.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
+          return dateB - dateA; // Sort by most recent
+        })
+        .map((appointment) => (
+          <div key={appointment.id} className="appointment-card">
+            <p><strong>Name:</strong> {appointment.name}</p>
+            <p><strong>Contact:</strong> {appointment.contact}</p>
+            <p><strong>Appointment Date:</strong> {appointment.appointmentDate}</p>
+            <p><strong>Wing:</strong> {appointment.wing}</p>
+            <p><strong>Flat:</strong> {appointment.flat}</p>
+            <p><strong>Status:</strong> {appointment.appointmentStatus}</p>
+          </div>
+        ))
+    ) : (
+      <p>No appointment history found.</p>
+    )}
+  </div>
+)}
+
+
+  </div>
+)}
+
     </div>
   );
 };

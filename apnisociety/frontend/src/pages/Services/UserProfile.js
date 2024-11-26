@@ -59,7 +59,7 @@ const UserProfile = () => {
   // Upload the image to Firebase Storage and return the URL
   const uploadImageToStorage = async (uid, imageFile) => {
     try {
-      const imageRef = ref(storage, `profileImages/${uid}`);
+      const imageRef = ref(storage, `profilePicture/${uid}`);
       await uploadBytes(imageRef, imageFile);
       const downloadURL = await getDownloadURL(imageRef);
       return downloadURL;

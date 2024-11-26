@@ -5,13 +5,13 @@ import { collection, addDoc, onSnapshot } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 
 const SecurityInOut = () => {
-  const [guestName, setGuestName] = useState("");
-  const [contact, setContact] = useState("");
-  const [purpose, setPurpose] = useState("");
-  const [flatNumber, setFlatNumber] = useState("");
-  const [image, setImage] = useState(null);
-  const [successMessage, setSuccessMessage] = useState("");
-  const [guestRequests, setGuestRequests] = useState([]);
+    const [guestName, setGuestName] = useState("");
+    const [contact, setContact] = useState("");
+    const [purpose, setPurpose] = useState("");
+    const [flatNumber, setFlatNumber] = useState("");
+    const [image, setImage] = useState(null);
+    const [successMessage, setSuccessMessage] = useState("");
+    const [guestRequests, setGuestRequests] = useState([]);
 
   // Handle image change
   const handleImageChange = (e) => {

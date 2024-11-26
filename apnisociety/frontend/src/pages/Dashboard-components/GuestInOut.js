@@ -5,6 +5,7 @@ import { collection, updateDoc, doc, onSnapshot, getDocs } from "firebase/firest
 import { ref, getDownloadURL } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 
+
 const GuestInOut = () => {
   const [guestHistory, setGuestHistory] = useState([]);
   const [flatNumber, setFlatNumber] = useState(null);
@@ -43,37 +44,48 @@ const GuestInOut = () => {
     if (flatNumber) {
       const unsubscribe = onSnapshot(collection(db, "guestHistory"), async (snapshot) => {
         const guestList = [];
-
+  
         for (const docSnap of snapshot.docs) {
           const guestData = docSnap.data();
           let imageUrl = null;
-
+  
           // Fetch the guest's image if it exists
           if (guestData.imageName) {
             try {
-              const imageRef = ref(storage, 'guestImages/${guestData.imageName}');
+              const imageRef = ref(storage, `guestImages/${guestData.imageName}`);
               imageUrl = await getDownloadURL(imageRef);
             } catch (error) {
               if (error.code === 'storage/object-not-found') {
-                console.warn('Image not found: ${guestData.imageName}');
+                console.warn(`Image not found: ${guestData.imageName}`);
                 imageUrl = '/images/placeholder.jpg'; // Replace with the path to your placeholder image
               } else {
                 console.error('Error fetching image:', error);
               }
             }
           }
-
+  
           if (guestData.flatNumber === flatNumber) {
             guestList.push({ id: docSnap.id, ...guestData, imageUrl });
           }
         }
-
+  
+        // Sort the guest list by timestamp (newest to oldest)
+        guestList.sort((a, b) => {
+          // First, try to sort by timestamp
+          const timestampA = a.timestamp?.seconds || 0;
+          const timestampB = b.timestamp?.seconds || 0;
+  
+          // Sort by timestamp in descending order (newest first)
+          return timestampB - timestampA;
+        });
+  
         setGuestHistory(guestList);
       });
-
+  
       return () => unsubscribe();
     }
   }, [flatNumber]);
+  
 
   // Handle approval or rejection of guest
   const handleApproval = async (guestId, status) => {

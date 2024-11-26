@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { db } from "../firebaseConfig"; // Adjust the path according to your structure
+import { db } from "../firebaseConfig";
 import { collection, getDocs, addDoc, query, where } from "firebase/firestore";
+import axios from "axios";
 import "./KiranaStore.css";
 
 const KiranaStore = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
-  const [showCart, setShowCart] = useState(false); // For toggling the cart
-  const [orders, setOrders] = useState([]); // For storing order history
+  const [orders, setOrders] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [showSection, setShowSection] = useState("products"); // 'products', 'cart', 'orders'
 
-  // Fetch products from Firebase on component mount
   useEffect(() => {
     const fetchProducts = async () => {
       const productsCollection = collection(db, "products");
@@ -25,12 +26,10 @@ const KiranaStore = () => {
     fetchProducts();
   }, []);
 
-  // Fetch order history for the user
   useEffect(() => {
     const fetchOrders = async () => {
-      // Replace the below query with appropriate user details
       const ordersCollection = collection(db, "orders");
-      const q = query(ordersCollection, where("email", "==", "testuser@example.com")); // Filter by user email
+      const q = query(ordersCollection, where("email", "==", "testuser@example.com"));
       const orderSnapshot = await getDocs(q);
       const orderList = orderSnapshot.docs.map((doc) => ({
         ...doc.data(),
@@ -42,54 +41,63 @@ const KiranaStore = () => {
     fetchOrders();
   }, []);
 
-  const addToCart = (product) => {
-    setCart([...cart, product]);
+  const handleAddToCart = (product) => {
+    const existingProduct = cart.find((item) => item.id === product.id);
+    if (existingProduct) {
+      setCart(
+        cart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }
   };
 
-  const removeFromCart = (productId) => {
-    const updatedCart = cart.filter((item) => item.id !== productId);
-    setCart(updatedCart);
+  const handleRemoveFromCart = (product) => {
+    const existingProduct = cart.find((item) => item.id === product.id);
+    if (existingProduct.quantity > 1) {
+      setCart(
+        cart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+      );
+    } else {
+      setCart(cart.filter((item) => item.id !== product.id));
+    }
   };
 
   const calculateTotal = () => {
-    return cart.reduce((total, product) => total + product.price, 0);
+    return cart.reduce((total, product) => total + product.price * product.quantity, 0);
   };
 
-  const handlePayment = async () => {
+  const handleCheckout = async () => {
     try {
       const totalAmount = calculateTotal();
-      // Call the server to create a Razorpay order
-      const res = await axios.get(`http://localhost:5000/pay?amount=${totalAmount}`);
-      const { orderId, key_id, amount, currency } = res.data;
+      const response = await axios.get(`http://localhost:5000/pay?amount=${totalAmount}`);
+      const { orderId, key_id, amount, currency } = response.data;
 
-      // Create options for the Razorpay payment gateway
       const options = {
         key: key_id,
         amount: amount,
         currency: currency,
         name: "Kirana Store",
-        description: "Test Transaction",
+        description: "Order Payment",
         order_id: orderId,
-        handler: async function (response) {
-          alert("Payment Successful!");
-
-          // Create an order document in Firestore
-          try {
-            await addDoc(collection(db, "orders"), {
-              products: cart, // Store the cart items
-              totalAmount: totalAmount,
-              orderId: response.razorpay_order_id, // Razorpay order ID
-              userName: "Test User", // You can dynamically get the user details
-              email: "testuser@example.com", // Example email
-              status: "Pending", // Initial order status
-              createdAt: new Date(),
-            });
-            console.log("Order successfully added to Firestore!");
-          } catch (error) {
-            console.error("Error adding order to Firestore:", error);
-          }
-
-          // Clear the cart after successful payment
+        handler: async (response) => {
+          await addDoc(collection(db, "orders"), {
+            products: cart,
+            totalAmount,
+            orderId: response.razorpay_order_id,
+            email: "testuser@example.com",
+            status: "Processing",
+            createdAt: new Date(),
+          });
+          alert("Payment Successful! Order placed.");
           setCart([]);
         },
         prefill: {
@@ -97,87 +105,108 @@ const KiranaStore = () => {
           email: "testuser@example.com",
           contact: "9999999999",
         },
-        theme: {
-          color: "#3399cc",
-        },
+        theme: { color: "#3399cc" },
       };
 
-      // Open Razorpay payment window
-      const rzp1 = new window.Razorpay(options);
-      rzp1.open();
+      const rzp = new window.Razorpay(options);
+      rzp.open();
     } catch (error) {
-      console.error("Error in payment:", error);
-      alert("Payment failed. Please try again.");
+      console.error("Checkout error:", error);
     }
   };
 
+  const filteredProducts = products.filter(
+    (product) =>
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      (selectedCategory === "All" || product.category === selectedCategory)
+  );
+
   return (
-    <div className="kirana-store-section">
-      <h2>Kirana Store</h2>
+    <div className="kirana-store">
+      <header className="store-header">
+        <h1>Kirana Store</h1>
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <select onChange={(e) => setSelectedCategory(e.target.value)}>
+          <option value="All">All Categories</option>
+          <option value="Groceries">Groceries</option>
+          <option value="Personal Care">Personal Care</option>
+          <option value="Household">Household</option>
+        </select>
+        <button onClick={() => setShowSection("cart")}>
+          Cart ({cart.length})
+        </button>
+        <button onClick={() => setShowSection("orders")}>Orders</button>
+      </header>
 
-      {/* Toggle button for cart */}
-      <button className="toggle-cart-btn" onClick={() => setShowCart(!showCart)}>
-        {showCart ? "Hide Cart" : "Show Cart"}
-      </button>
-
-      {/* Conditionally render cart based on showCart state */}
-      {showCart && (
-        <div className="cart-section">
-          <h2>Cart</h2>
-          {cart.length === 0 ? (
-            <p>Your cart is empty</p>
-          ) : (
-            <ul>
-              {cart.map((item) => (
-                <li key={item.id} className="cart-item">
-                  {item.name} - ₹{item.price}/{item.unit}
-                  <button onClick={() => removeFromCart(item.id)} className="remove-btn">
-                    Remove
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-          <h3>Total: ₹{calculateTotal()}</h3>
-          {cart.length > 0 && <button onClick={handlePayment}>Proceed to Payment</button>}
+      {showSection === "products" && (
+        <div className="product-list">
+          {filteredProducts.map((product) => (
+            <div className="product-card" key={product.id}>
+            <img 
+              src={`/Images/kirana/${product.name}.jpg`} 
+              alt={product.name} 
+              onError={(e) => {
+                if (!e.target.src.includes("/placeholder.png")) {
+                  e.target.src = "/Images/kirana/placeholder.png";
+                }
+              }}
+            />
+            <h3>{product.name}</h3>
+            <p>Price: ₹{product.price}/{product.unit}</p>
+            <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+          </div>
+          
+          ))}
         </div>
       )}
 
-      <div className="product-list">
-        {products.map((product) => (
-          <div key={product.id} className="product-card">
-            <h3>{product.name}</h3>
-            <p>Price: ₹{product.price}/{product.unit}</p>
-            <button onClick={() => addToCart(product)}>Add to Cart</button>
-          </div>
-        ))}
-      </div>
+      {showSection === "cart" && (
+        <div className="cart-section">
+          <h2>Shopping Cart</h2>
+          {cart.length === 0 ? (
+            <p>Your cart is empty.</p>
+          ) : (
+            <>
+              {cart.map((item) => (
+                <div key={item.id} className="cart-item">
+                  <p>{item.name}</p>
+                  <p>Price: ₹{item.price}</p>
+                  <p>Quantity: {item.quantity}</p>
+                  <button onClick={() => handleRemoveFromCart(item)}>-</button>
+                  <button onClick={() => handleAddToCart(item)}>+</button>
+                </div>
+              ))}
+              <h3>Total: ₹{calculateTotal()}</h3>
+              <button onClick={handleCheckout}>Checkout</button>
+            </>
+          )}
+          <button onClick={() => setShowSection("products")}>Return to Store</button>
+        </div>
+      )}
 
-      {/* Display order history */}
-      <div className="order-history">
-        <h2>Your Orders</h2>
-        {orders.length === 0 ? (
-          <p>No orders found.</p>
-        ) : (
-          <ul>
-            {orders.map((order) => (
-              <li key={order.id} className="order-item">
-                <h3>Order ID: {order.orderId}</h3>
-                <p>Total Amount: ₹{order.totalAmount}</p>
-                <p>Status: {order.status}</p> {/* Show order status */}
+      {showSection === "orders" && (
+        <div className="order-section">
+          <h2>Order History</h2>
+          {orders.length === 0 ? (
+            <p>No orders placed yet.</p>
+          ) : (
+            orders.map((order) => (
+              <div key={order.id} className="order-card">
+                <p>Order ID: {order.orderId}</p>
+                <p>Total: ₹{order.totalAmount}</p>
+                <p>Status: {order.status}</p>
                 <p>Ordered on: {new Date(order.createdAt.seconds * 1000).toLocaleString()}</p>
-                <ul>
-                  {order.products.map((product, index) => (
-                    <li key={index}>
-                      {product.name} - ₹{product.price} ({product.unit})
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+              </div>
+            ))
+          )}
+          <button onClick={() => setShowSection("products")}>Return to Store</button>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,0 +1,123 @@
+/* Container to center the login form */
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  
+  height: 100vh; /* Full viewport height */
+  background-color: #f0f0f0; /* Optional: background color */
+  margin: 0; /* Ensure no margins are interfering */
+}
+
+/* Styling for the login container */
+.login-container {
+  width: 400px;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Heading styling */
+h1 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #4a4a4a;
+  letter-spacing: 1px;
+}
+
+/* Styling for input fields inside the form */
+.login-form div {
+  margin-bottom: 1.5rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Label styling */
+label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 8px;
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Input field styling */
+input {
+  width: 100%;
+  max-width: 300px;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #6a11cb;
+  box-shadow: 0 0 8px rgba(106, 17, 203, 0.3);
+  background: #ffffff;
+}
+
+/* Submit button styling */
+.button1 {
+  width: 100%;
+  max-width: 300px;
+  padding: 12px;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Error message styling */
+.error {
+  color: #ff4d4d;
+  font-size: 0.9rem;
+  margin-top: -10px;
+  margin-bottom: 1rem;
+}
+
+/* Placeholder styling */
+input::placeholder {
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+/* Subtle Animations */
+.login-container {
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

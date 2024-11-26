@@ -1,0 +1,154 @@
+/* GuestInOut.css */
+.guest-in-out {
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.guest-in-out h2 {
+    text-align: center;
+    color: #4a90e2;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.guest-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.guest-item {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.guest-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.guest-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    margin-right : 50px ;
+}
+
+.guest-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.guest-info p {
+    margin: 8px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.guest-info strong {
+    color: #4a90e2;
+    font-weight: 600;
+}
+
+.guest-info p span {
+    color: #777;
+}
+
+.guest-item div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.guest-item .top-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.guest-item .bottom-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.status {
+    font-size: 14px;
+    font-weight: bold;
+    color: #4a90e2;
+}
+
+.status.pending {
+    color: #ff8c00;
+}
+
+.status.approved {
+    color: #28a745;
+}
+
+.status.rejected {
+    color: #dc3545;
+}
+
+button {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+button.reject {
+    background-color: #dc3545;
+}
+
+button.reject:hover {
+    background-color: #c82333;
+}
+
+@media screen and (max-width: 768px) {
+    .guest-list {
+        gap: 15px;
+    }
+
+    .guest-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .guest-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .guest-info p {
+        font-size: 14px;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}

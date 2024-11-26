@@ -1,0 +1,67 @@
+.scheduler-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .scheduler-form input,
+  .scheduler-form textarea {
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .scheduler-form button {
+    padding: 10px 20px;
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .scheduler-form button:hover {
+    background: #45a049;
+  }
+  
+  .meeting-list {
+    margin-top: 20px;
+  }
+  
+  .meeting-card {
+    background: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .meeting-card h4 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .meeting-card p {
+    margin: 5px 0;
+    color: #666;
+  }
+  .scheduler-form .react-time-picker {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #f9f9f9;
+  }
+  .react-time-picker input {
+    border: none;
+    width: calc(100% - 20px);
+  }
+  

@@ -11,13 +11,17 @@ import AboutUs from './Home-page-feat/aboutus';
 import Services from './Home-page-feat/services';
 import ContactUs from './Home-page-feat/contactus';
 import Footer from './Home-page-feat/footer';
-import profileIcon from '../Images/profile_icon.png'; 
-import { auth } from './firebaseConfig';
+// import profileIcon from '../Images/profile_icon.png'; 
+import { auth, db, storage } from './firebaseConfig';
+import { doc, getDoc } from "firebase/firestore";
+import { getDownloadURL, ref } from "firebase/storage";
 
 const HomePage = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     // State for slideshow index
     const [slideIndex, setSlideIndex] = useState(0); 
+    const [profilePicUrl, setProfilePicUrl] = useState(null); // State to store profile picture URL
+    const [userId, setUserId] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -25,11 +29,41 @@ const HomePage = () => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setIsLoggedIn(true);
+                setUserId(user.uid);
             } else {
                 setIsLoggedIn(false);
             }
         });
     }, []);
+
+    useEffect(() => {
+        // Fetch profile picture if the user is logged in
+        const fetchProfilePic = async () => {
+            if (isLoggedIn && userId) {
+                try {
+                    // Fetch the user document from Firestore
+                    const userDocRef = doc(db, 'users', userId); // Assuming users collection
+                    const userDocSnap = await getDoc(userDocRef);
+
+                    if (userDocSnap.exists()) {
+                        const userData = userDocSnap.data();
+                        const profilePicName = userData.profilePicture; // Assuming profile picture field is stored as file name in Firestore
+
+                        if (profilePicName) {
+                            // Fetch the download URL for the profile picture from Firebase Storage
+                            const profilePicRef = ref(storage, `profilePictures/${userId}`);
+                            const url = await getDownloadURL(profilePicRef);
+                            setProfilePicUrl(url); // Update the state with the fetched URL
+                        }
+                    }
+                } catch (error) {
+                    console.error("Error fetching profile picture:", error);
+                }
+            }
+        };
+
+        fetchProfilePic();
+    }, [isLoggedIn, userId]);
 
     useEffect(() => {
         // Slideshow functionality
@@ -76,11 +110,28 @@ const HomePage = () => {
                     <a href="#services">Services</a>
                     <a href="#footer">Support</a>
                     <a href="#contact-us">Contact Us</a>
-                    {isLoggedIn ? (
+                    {/* {isLoggedIn ? (
                         <>
                             <a href="Dashboard" onClick={() => navigate('/Dashboard')}>Dashboard</a>
                             <div className='profile-menu'>
                                 <img src={profileIcon} alt="Profile" className='profile_icon' />
+                                <div className="dropdown-content">
+                                    <p>Profile</p>
+                                    <p onClick={handleLogout}>Logout</p>
+                                </div>
+                            </div>
+                        </>
+                    ) : (
+                        <div className='home-page_login_btn'>
+                            <button onClick={() => navigate('/Startup')}>Login</button>
+                        </div>
+                    )} */}
+                    {isLoggedIn ? (
+                        <>
+                            <a href="Dashboard" onClick={() => navigate('/Dashboard')}>Dashboard</a>
+                            <div className='profile-menu'>
+                                {/* Render user's profile picture if available, otherwise show default */}
+                                <img src={profilePicUrl} alt="Profile" className='profile_icon' />
                                 <div className="dropdown-content">
                                     <p>Profile</p>
                                     <p onClick={handleLogout}>Logout</p>

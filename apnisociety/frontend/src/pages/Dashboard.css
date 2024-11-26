@@ -70,7 +70,9 @@
     cursor: pointer;
     transition: all 0.2s ease;
 }
-
+.feature p{
+    padding: 10px;
+}
 .feature:hover {
     background-color: #9d9999;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);

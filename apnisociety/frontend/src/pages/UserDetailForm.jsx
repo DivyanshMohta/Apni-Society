@@ -69,7 +69,7 @@ const UserDetailsForm = () => {
 
                 let profile = null;
                 if (formData.profilePicture) {
-                    const storageRef = ref(storage, `profilePicture/${user.uid}/${formData.profilePicture.name}`);
+                    const storageRef = ref(storage, `profilePicture/${user.uid}`);
                     await uploadBytes(storageRef, formData.profilePicture);
                     profile = await getDownloadURL(storageRef);
                 }

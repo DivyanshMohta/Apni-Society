@@ -1,0 +1,207 @@
+/* Basic reset and styling */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #eef2f7; /* Softer background */
+  color: #333; /* Text color for better readability */
+}
+
+/* Main container */
+.security-in-out {
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+  padding: 2rem;
+  width: 600px; /* Restrict width for better focus */
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  overflow: hidden;
+  border: 1px solid #ddd; /* Subtle border */
+}
+
+/* Heading styling */
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0056b3; /* Primary color */
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Form container */
+.guest-form {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.guest-form input[type="text"],
+.guest-form input[type="file"] {
+  width: 100%; /* Full width inputs */
+  max-width: 500px; /* Prevent being too wide */
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px; /* More modern feel */
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.guest-form input[type="text"]:focus {
+  border-color: #0056b3; /* Highlight focus */
+  box-shadow: 0 0 5px rgba(0, 86, 179, 0.3);
+  outline: none;
+}
+
+/* File input */
+.guest-form input[type="file"] {
+  padding: 1rem;
+  background-color: #f1f3f5; /* Subtle background */
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+/* Submit button */
+.guest-form button {
+  margin: 5px;
+  padding: 1rem;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%; /* Full width button */
+  max-width: 300px; /* Match input width */
+}
+
+.guest-form button:hover {
+  background-color: #004494;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Success message */
+.success-message {
+  color: #28a745; /* Green success color */
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* Guest entry list */
+.guest-requests-list {
+  margin-top: 2rem;
+  border-top: 2px solid #eee;
+  padding-top: 1.5rem;
+}
+
+.guest-requests-list h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.guest-request-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.guest-request-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.guest-request-item p {
+  margin: 0.5rem 0;
+  color: #555;
+  font-size: 1rem;
+}
+
+.guest-request-item strong {
+  color: #333;
+  font-weight: bold;
+}
+
+/* Headers */
+h2 {
+  font-size: 1.75rem;
+  color: #444;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+/* Add subtle animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.error-message {
+  color: #e63946; /* Red color for error */
+  font-size: 0.9rem;
+  margin-top: -0.8rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.guest-requests-list,
+.guest-form {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .security-in-out {
+    padding: 1.5rem;
+  }
+
+  .guest-form input[type="text"],
+  .guest-form button {
+    font-size: 1rem;
+    max-width: 100%; /* Take full width on smaller screens */
+  }
+
+  .guest-request-item {
+    padding: 1.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .security-in-out {
+    padding: 1.2rem;
+  }
+
+  .guest-form {
+    gap: 1.2rem;
+  }
+
+  .guest-form input[type="text"],
+  .guest-form button {
+    font-size: 0.95rem;
+  }
+
+  .guest-request-item {
+    padding: 1rem;
+  }
+}

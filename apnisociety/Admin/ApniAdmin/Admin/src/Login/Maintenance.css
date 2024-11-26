@@ -1,0 +1,191 @@
+/* Admin Maintenance Page */
+.admin-maintenance {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-left: 150px;
+  }
+  
+  h1 {
+    color: #333;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  h2 {
+    color: #444;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  
+  select,
+  input {
+    margin: 12px 0;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1.1rem;
+    color: #333;
+    background-color: #fff;
+    transition: all 0.3s ease;
+  }
+  
+  select:focus,
+  input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    outline: none;
+  }
+  
+  button {
+    padding: 14px 24px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+  }
+  
+  button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  hr {
+    margin-top: 30px;
+    border: 0;
+    border-top: 2px solid #ddd;
+    margin-bottom: 30px;
+  }
+  
+  select,
+  input {
+    font-size: 1.1rem;
+  }
+  
+  select option {
+    padding: 12px;
+  }
+  
+  /* Payment status message */
+  .payment-status {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #e9f7ef;
+    color: #28a745;
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid #28a745;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.1);
+  }
+  
+  /* Unpaid Records Section */
+  .unpaid-records {
+    margin-top: 40px;
+  }
+  
+  .unpaid-records h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .unpaid-records ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .unpaid-records li {
+    padding: 14px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .unpaid-records li button {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .unpaid-records li button:hover {
+    background-color: #218838;
+  }
+  
+  /* Maintenance Records Section */
+  .maintenance-status {
+    margin-top: 40px;
+  }
+  
+  .maintenance-status h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .maintenance-status ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .maintenance-status li {
+    padding: 14px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+  }
+  
+  .maintenance-status li strong {
+    font-weight: 700;
+  }
+  
+  @media (max-width: 768px) {
+    .admin-maintenance {
+      padding: 20px;
+    }
+  
+    button {
+      width: 100%;
+      font-size: 1rem;
+    }
+  
+    .maintenance-record,
+    .unpaid-records li {
+      margin-bottom: 20px;
+    }
+  }
+  
