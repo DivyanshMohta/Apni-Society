@@ -11,10 +11,11 @@ import AboutUs from './Home-page-feat/aboutus';
 import Services from './Home-page-feat/services';
 import ContactUs from './Home-page-feat/contactus';
 import Footer from './Home-page-feat/footer';
-// import profileIcon from '../Images/profile_icon.png'; 
+import profileIcon from '../Images/profile_icon.png'; 
 import { auth, db, storage } from './firebaseConfig';
 import { doc, getDoc } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
+import UserProfile from './Services/UserProfile';
 
 const HomePage = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -37,33 +38,34 @@ const HomePage = () => {
     }, []);
 
     useEffect(() => {
-        // Fetch profile picture if the user is logged in
         const fetchProfilePic = async () => {
             if (isLoggedIn && userId) {
                 try {
-                    // Fetch the user document from Firestore
-                    const userDocRef = doc(db, 'users', userId); // Assuming users collection
+                    const userDocRef = doc(db, 'Users', userId);
                     const userDocSnap = await getDoc(userDocRef);
-
+                    console.log(userDocSnap.exists());
+    
                     if (userDocSnap.exists()) {
                         const userData = userDocSnap.data();
-                        const profilePicName = userData.profilePicture; // Assuming profile picture field is stored as file name in Firestore
-
-                        if (profilePicName) {
-                            // Fetch the download URL for the profile picture from Firebase Storage
-                            const profilePicRef = ref(storage, `profilePictures/${userId}`);
-                            const url = await getDownloadURL(profilePicRef);
-                            setProfilePicUrl(url); // Update the state with the fetched URL
-                        }
+                        const profilePicURL = userData.profileURL;
+    
+                        console.log("Fetched profileURL:", profilePicURL); // Debug log
+                        setProfilePicUrl(profilePicURL || null); // Set URL or null for default
+                    } else {
+                        console.log("No such document!");
+                        setProfilePicUrl(null);
                     }
                 } catch (error) {
                     console.error("Error fetching profile picture:", error);
+                    setProfilePicUrl(null);
                 }
             }
         };
-
+    
         fetchProfilePic();
     }, [isLoggedIn, userId]);
+    
+    
 
     useEffect(() => {
         // Slideshow functionality
@@ -84,6 +86,10 @@ const HomePage = () => {
         // Clean up the interval on unmount
         return () => clearInterval(slideInterval);
     }, [slideIndex]); // Re-run effect when slideIndex changes
+
+    const handleProfile = () => {
+        navigate('/userprofile');
+    }
 
     const handleLogout = () => {
         auth.signOut().then(() => {
@@ -131,9 +137,9 @@ const HomePage = () => {
                             <a href="Dashboard" onClick={() => navigate('/Dashboard')}>Dashboard</a>
                             <div className='profile-menu'>
                                 {/* Render user's profile picture if available, otherwise show default */}
-                                <img src={profilePicUrl} alt="Profile" className='profile_icon' />
+                                <img src={profilePicUrl || profileIcon} alt="Profile" className='profile_icon' />
                                 <div className="dropdown-content">
-                                    <p>Profile</p>
+                                    <p onClick={handleProfile}>Profile</p>
                                     <p onClick={handleLogout}>Logout</p>
                                 </div>
                             </div>

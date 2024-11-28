@@ -1,0 +1,272 @@
+/* Main Container for Electrician Services */
+.plumbing-services {
+    background-color: #f4f7fc;
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Appointment Form Styling */
+  .appointment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+    display: block;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #555;
+    transition: all 0.3s ease;
+  }
+  
+  .form-group input:focus {
+    border-color: #0dde59;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 191, 89, 0.3);
+  }
+  
+  /* Request Service Button */
+  .request-service-btn {
+    max-width: 70vh;
+    padding: 12px 18px;
+    margin-left: 150px;
+    background-color: #0dde59;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .request-service-btn:hover {
+    background-color: #007b46;
+  }
+  
+  .request-service-btn:active {
+    transform: scale(0.98);
+  }
+  
+  /* Appointment Message */
+  .appointment-message {
+    margin-top: 20px;
+    color: #28a745;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  /* Appointments List */
+  .appointments-list {
+    margin-top: 40px;
+  }
+  
+  .appointment-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+    border-left: 4px solid #5c6bc0; /* Soft color for visual interest */
+  }
+  
+  .appointment-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .appointment-card p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .appointment-card h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .appointment-card .appointment-time {
+    font-size: 13px;
+    color: #777;
+  }
+  
+  .appointment-card .status {
+    font-weight: 600;
+    font-size: 14px;
+    color: #28a745; /* Green for confirmed or upcoming appointments */
+  }
+  
+  .appointment-card .status.pending {
+    color: #ff9800; /* Orange for pending appointments */
+  }
+  
+  .appointment-card .status.cancelled {
+    color: #f44336; /* Red for cancelled appointments */
+  }
+  
+  
+  /* Cancel Button Styling */
+  .cancel-btn {
+    padding: 10px 15px;
+    background-color: #e73030;
+    color: #dedede;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+    border: 1px solid #ddd; /* Lighter border for a subtle effect */
+  }
+  
+  .cancel-btn:hover {
+    background-color: #cd5b65;
+  }
+  
+  .cancel-btn:active {
+    transform: scale(0.98);
+  }
+  /* Tabs Styling for Appointments History and Current Appointments */
+  .tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    justify-content: center;
+  }
+  
+  .tab-btn {
+    padding: 12px 20px;
+    cursor: pointer;
+    border: 1px solid #b0bec5; /* Light gray border */
+    background-color: #e3f2fd;
+    color: #333;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 14px;
+  }
+  
+  .tab-btn:hover {
+    background-color: #cfd8dc;
+    color: #0dde59;
+  }
+  
+  .tab-btn.active {
+    background-color: #2196f3;
+    color: #fff;
+    border-color: #0b7dda;
+  }
+  
+  .tab-btn:focus {
+    outline: none;
+    box-shadow: 0 0 3px rgba(0, 191, 89, 0.3);
+  }
+  /* Responsive Design for Small Screens */
+  @media (max-width: 768px) {
+    .electrician-services {
+      padding: 20px;
+      max-width: 100%;
+    }
+  
+    .appointment-form {
+      gap: 15px;
+    }
+  
+    .form-group input {
+      padding: 10px;
+    }
+  
+    .request-service-btn {
+      font-size: 14px;
+      padding: 10px 15px;
+    }
+  
+    .appointment-message {
+      font-size: 14px;
+    }
+  
+    .appointments-list {
+      margin-top: 20px;
+    }
+  
+    .appointment-card {
+      padding: 15px;
+    }
+  
+    .cancel-btn {
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+  }
+  
+  /* Appointments History Section */
+  .appointments-history {
+    margin-top: 40px;
+  }
+  
+  .appointment-history-card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+    border-left: 4px solid #81c784; /* Soft green for completed appointments */
+  }
+  
+  .appointment-history-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .appointment-history-card p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .appointment-history-card h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .appointment-history-card .appointment-time {
+    font-size: 13px;
+    color: #777;
+  }
+  
+  .appointment-history-card .status {
+    font-weight: 600;
+    font-size: 14px;
+    color: #2196f3; /* Blue for completed or past appointments */
+  }
+  
+  .appointment-history-card .status.cancelled {
+    color: #f44336; /* Red for cancelled appointments */
+  }
+  

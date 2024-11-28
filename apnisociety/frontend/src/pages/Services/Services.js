@@ -4,7 +4,8 @@ import KiranaStore from "./KiranaStore";
 import KiranaAdmin from "./kirnaadmin";
 import ElectricianServices from "./ElectricianServices"; // Import Electrician Services component
 import ElectricianAdmin from "./ElectricianAdmin"; // Import Electrician Admin component
-
+import CleaningServices from "./CleaningServices";
+import PlumbingServices from "./PlumbingServices";
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState(null);
@@ -32,6 +33,10 @@ const Services = () => {
       setSelectedService("ElectricianAdmin"); // Show ElectricianAdmin component
     } else if (service.title === "Security In/Out") {
       setSelectedService("SecurityInOut"); // Show SecurityInOut component
+    } else if (service.title === "Cleaning") {
+      setSelectedService("CleaningServices")
+    } else if (service.title === "Plumbing") {
+      setSelectedService("PlumbingServices")
     } else {
       setSelectedService(service);
     }
@@ -64,6 +69,10 @@ const Services = () => {
         <ElectricianServices />
       ) : selectedService === "ElectricianAdmin" ? (
         <ElectricianAdmin />
+      ) : selectedService === "CleaningServices" ? (
+        <CleaningServices />
+      ) : selectedService === "PlumbingServices" ? (
+        <PlumbingServices />
       ) : (
         <div className="service-details">
           <h3>{selectedService.title}</h3>

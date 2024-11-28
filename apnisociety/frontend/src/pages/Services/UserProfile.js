@@ -109,8 +109,11 @@ const UserProfile = () => {
     <div className="user-profile-container">
       <div className="profile-header">
         <div className="profile-image">
-          {userData.profileImage ? (
-            <img src={userData.profileImage} alt="Profile" />
+          {userData.profileURL ? (
+            <img 
+              src={userData.profileURL} 
+              alt="Profile" 
+            />
           ) : (
             <FontAwesomeIcon icon={faUserCircle} size="6x" />
           )}
