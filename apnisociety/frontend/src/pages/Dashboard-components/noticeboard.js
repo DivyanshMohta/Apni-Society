@@ -72,6 +72,13 @@ const NoticeBoard = ({ username }) => {
             return;
         }
 
+         // Formatting the text: trim and replace multiple spaces with a single space
+        const formattedText = noticeText
+        .trim() // Remove leading/trailing spaces
+        .replace(/\s+/g, ' ') // Replace multiple spaces with a single space
+        .replace(/[\r\n]+/g, '\n'); // Replace multiple line breaks with a single one
+
+        
         try {
             let imageUrl = null;
             if (noticeImage) {
@@ -236,8 +243,7 @@ const NoticeBoard = ({ username }) => {
                         <div className="notice-actions">
                             <FontAwesomeIcon icon={faThumbsUp} onClick={() => handleAgree(notice.id, notice.agreeCount || 0)} />
                             <span>Agree ({notice.agreeCount || 0})</span>
-                            <FontAwesomeIcon icon={faComments} />
-                            <span>Comment</span>
+                            
                         </div>
                         <div className="comments-section">
                             {notice.comments && notice.comments.length > 0 && (

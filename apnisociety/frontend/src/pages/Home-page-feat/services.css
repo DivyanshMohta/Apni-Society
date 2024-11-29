@@ -5,21 +5,24 @@
     margin: 0 -10px; /* Adjust margins for proper spacing */
 }
 
-.service-card {
+.service-card-home {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     background-color: white;
     border-radius: 15px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
-    max-width: 300px; /* Adjusted for no images */
-    margin: 20px; /* Spacing between cards */
+    max-width: 250px; /* Adjusted for no images */
+    margin: 30px; /* Spacing between cards */
     padding: 20px; /* Added padding for content */
+    position: relative;
+    height: 280px;
 }
 
-.service-card:hover {
+.service-card-home:hover {
     transform: translateY(-10px);
     box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
 }
@@ -35,7 +38,7 @@
 }
 
 .service-content h3 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     margin: 10px 0; /* Adjusted margin */
     color: #333;
@@ -48,7 +51,9 @@
 }
 
 .learn-more-btn {
+    position:relative;
     background: linear-gradient(135deg, #87ceeb, #1e90ff);
+    width: 70%;
     border: none;
     color: white;
     padding: 12px 24px;
@@ -56,10 +61,14 @@
     border-radius: 50px;
     transition: all 0.3s ease;
     cursor: pointer;
+    position: absolute; /* Position relative to the card */
+    bottom: 25px; /* Fixed distance from the bottom of the card */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%);
 }
 
 .learn-more-btn:hover {
     background: linear-gradient(135deg, #1e90ff, #87ceeb);
     box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px);
+    transform: translate(-50%, -2px);
 }

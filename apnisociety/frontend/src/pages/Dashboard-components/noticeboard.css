@@ -1,17 +1,17 @@
-/* Notice Board styling */
+/* Notice Board Styling */
 .notice-board {
-    background-color: #ece6cc;
+    background-color: #f7f7f7; /* Lighter background for a modern look */
     padding: 20px;
     margin-top: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border: 1px solid #070707;
-    max-width: 1000px; /* Limit width to make it centered and Instagram-like */
+    border-radius: 16px;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    max-width: 90%;
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Form styling */
+/* Form Styling */
 .notice-board form {
     display: flex;
     flex-direction: column;
@@ -19,47 +19,54 @@
 }
 
 .notice-board textarea {
-    padding: 15px;
-    margin-bottom: 15px;
+    padding: 16px;
+    margin-bottom: 20px;
     border-radius: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     resize: vertical;
     min-height: 120px;
+    font-size: 16px;
     transition: border-color 0.3s ease;
+    background-color: #f9f9f9;
 }
 
 .notice-board textarea:focus {
-    border-color: #3498db;
+    border-color: #007BFF; /* Blue focus border */
     outline: none;
 }
 
 .notice-board input[type="file"] {
-    margin-bottom: 15px;
-    padding: 8px;
+    margin-bottom: 20px;
+    padding: 10px;
     cursor: pointer;
 }
 
 .notice-board button {
-    background-color: #3498db;
+    background-color: #007BFF;
     color: white;
-    padding: 12px;
+    padding: 14px 18px;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .notice-board button:hover {
-    background-color: #2980b9;
+    background-color: #0056b3;
     transform: translateY(-2px);
 }
 
 .notice-board h2 {
-    padding: 10px;
+    padding: 10px 0;
+    color: #333;
+    font-size: 28px;
+    font-weight: 600;
 }
 
+/* File Input Styling */
 .file-input-container {
     display: flex;
     align-items: center;
@@ -67,20 +74,20 @@
 }
 
 .file-input-label {
-    background-color: #268f31;
+    background-color: #28a745;
     color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 12px 20px;
+    border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .file-input-label:hover {
-    background-color: #00b333;
+    background-color: #218838;
 }
 
 .file-input-label input[type="file"] {
-    display: none; /* Hide the default file input */
+    display: none;
 }
 
 .file-name {
@@ -89,73 +96,77 @@
     color: #333;
 }
 
+/* Button Styling */
 .button-primary {
     background-color: #28a745;
+    width: 20%;
     color: white;
-    padding: 10px 15px;
+    padding: 12px 18px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 12px;
+    transition: background-color 0.3s ease;
 }
 
 .button-primary:hover {
     background-color: #218838;
 }
 
+/* Error Message Styling */
 .error-message {
-    color: red;
+    color: #e74c3c;
     font-size: 14px;
 }
 
-/* Posted notices styling */
+/* Posted Notices Styling */
 .posted-notices {
-    margin-top: 30px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
 
-/* Notice item styling */
+/* Notice Item Styling */
 .notice-item {
-    background-color: #fcfcfc; /* Background color for each post */
-    padding: 20px;
-    margin-bottom: 20px; /* Adds space between posts */
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    text-align: left; /* Align text to the left */
-    overflow: hidden;
-    position: relative; /* Ensure the content is relative to the box */
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    max-width: 100%; /* Ensures each notice fits within its container */
+    word-wrap: break-word; /* Wraps long words */
+    overflow-wrap: break-word; /* Alternative for word wrapping */
 }
 
-/* White separation between posts */
 .notice-item + .notice-item {
-    margin-top: 20px; /* Adds white space between posts */
+    margin-top: 20px;
 }
 
 .notice-item img {
     width: 100%;
-    max-width: 600px; /* Limit image size */
+    max-width: 600px;
     height: auto;
-    transition: transform 0.3s ease;
     margin-bottom: 15px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
 }
 
 .notice-item img:hover {
-    transform: scale(1.05); /* Slight zoom on hover */
+    transform: scale(1.05);
 }
 
 .notice-item p {
-    font-size: 20px;
-    color: #333;
-    margin-top: 10px;
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+    margin-top: 12px;
 }
 
-/* Animation for new posts */
+/* Animation for New Posts */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-15px);
     }
     to {
         opacity: 1;
@@ -167,53 +178,74 @@
     animation: fadeIn 0.5s ease;
 }
 
-/* Styling for the profile picture in the notice-item */
+/* Profile Section in Notice Item */
 .posted_profile {
     display: flex;
-    align-items: center; /* Vertically center the name with the profile image */
-    margin-bottom: 15px; /* Space between profile and content */
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 .posted_profile img {
-    width: 37px;
-    height: 37px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    margin-right: 10px; /* Space between the image and the name */
+    margin-right: 12px;
+    border: 2px solid #ccc;
 }
 
 .profile-name {
-    padding-bottom: 10px;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 600;
     color: #333;
+    margin-bottom: 0;
 }
 
-/* Wrapper for the notice content (image and text) */
+/* Content Wrapper */
 .notice-content {
-    text-align: center; 
-    padding: 10px;
+    text-align: center;
+    padding: 12px;
 }
 
 .notice-content img {
     padding: 5px;
-    margin: auto; /* Center image within its container */
-    border-radius: 8px; /* Rounded corners for images */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for images */
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.notice-content p {
+    word-wrap: break-word; /* Ensures long words wrap within the paragraph */
+    overflow-wrap: break-word; /* Ensures long words wrap */
+    white-space: pre-wrap; /* Ensures line breaks are respected */
+    max-width: 100%; /* Prevents text from overflowing the container */
+    overflow: hidden; /* Hides overflow content */
 }
 
-/* For mobile responsiveness */
+.notice-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
-    .dashboard-page {
-        flex-direction: column; /* Stacks elements vertically */
+    .notice-board {
+        padding: 20px;
     }
 
-    .dashboard {
-        width: 100%; /* Full width on smaller screens */
-        height: auto; /* Allow auto height */
+    .notice-board button {
+        padding: 12px 16px;
     }
 
-    .main-content {
-        /* z-index: 1 !important; */
-        margin-left: 0; /* Remove left margin on smaller screens */
+    .notice-item img {
+        max-width: 100%;
+    }
+
+    .notice-item {
+        margin: 15px 0;
+    }
+
+    .file-input-container {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }

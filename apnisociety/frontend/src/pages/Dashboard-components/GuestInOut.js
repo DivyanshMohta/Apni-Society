@@ -1,4 +1,3 @@
-// Import necessary React and Firebase modules
 import React, { useState, useEffect } from "react";
 import "./GuestInOut.css"; // Import the CSS for styling
 import { db, storage } from "../firebaseConfig"; // Import Firebase configurations
@@ -6,11 +5,11 @@ import { collection, updateDoc, doc, onSnapshot, getDocs } from "firebase/firest
 import { ref, getDownloadURL } from "firebase/storage"; // Firebase Storage methods
 import { getAuth } from "firebase/auth"; // Firebase Auth method
 
-
 const GuestInOut = () => {
-  // State hooks for guest history and user's flat number
+  // State hooks for guest history, loading state, and user's flat number
   const [guestHistory, setGuestHistory] = useState([]);
   const [flatNumber, setFlatNumber] = useState(null);
+  const [loading, setLoading] = useState(true); // Track loading state
 
   // Fetch current user's flat number
   const fetchUserFlatNumber = async () => {
@@ -43,6 +42,8 @@ const GuestInOut = () => {
   // Fetch guest history when flat number is available
   useEffect(() => {
     if (flatNumber) {
+      setLoading(true); // Start loading when fetching guest history
+
       const unsubscribe = onSnapshot(collection(db, "guestHistory"), async (snapshot) => {
         const guestList = [];
   
@@ -79,8 +80,11 @@ const GuestInOut = () => {
           const timestampB = b.timestamp?.seconds || 0;
           return timestampB - timestampA;
         });
-  
+
+        console.log('Fetched guest list:', guestList); // Debugging log
+
         setGuestHistory(guestList);
+        setLoading(false); // End loading once data is fetched
       });
   
       return () => unsubscribe(); // Cleanup listener on unmount
@@ -105,34 +109,40 @@ const GuestInOut = () => {
   return (
     <div className="guest-in-out">
       <h2>Guest In/Out History</h2>
-      <div className="guest-list">
-        {guestHistory.length === 0 ? (
-          <p>No guest records found.</p> // Display if no guests are found
-        ) : (
-          guestHistory.map((guest) => (
-            <div key={guest.id} className="guest-item">
-              {/* Display guest image if available */}
-              {guest.imageUrl && <img src={guest.imageUrl} alt="Guest" className="guest-image" />}
-              <div className="guest-info">
-                {/* Display guest details */}
-                <p><strong>Name:</strong> {guest.name}</p>
-                <p><strong>Contact:</strong> {guest.contact}</p>
-                <p><strong>Purpose:</strong> {guest.purpose}</p>
-                <p><strong>Flat Number:</strong> {guest.flatNumber || "N/A"}</p>
-                <p><strong>Status:</strong> {guest.status || "Pending"}</p>
-                
-                {/* Display approval/rejection buttons for pending guests */}
-                {guest.status === "Pending" && (
-                  <div>
-                    <button onClick={() => handleApproval(guest.id, "Approved")}>Approve</button>
-                    <button onClick={() => handleApproval(guest.id, "Rejected")}>Reject</button>
-                  </div>
-                )}
+      
+      {/* Show loading message while data is being fetched */}
+      {loading ? (
+        <p>Loading guest history...</p>
+      ) : (
+        <div className="guest-list">
+          {guestHistory.length === 0 ? (
+            <p>No guest records found.</p> // Display if no guests are found
+          ) : (
+            guestHistory.map((guest) => (
+              <div key={guest.id} className="guest-item">
+                {/* Display guest image if available */}
+                {guest.imageUrl && <img src={guest.imageUrl} alt="Guest" className="guest-image" />}
+                <div className="guest-info">
+                  {/* Display guest details */}
+                  <p><strong>Name:</strong> {guest.name}</p>
+                  <p><strong>Contact:</strong> {guest.contact}</p>
+                  <p><strong>Purpose:</strong> {guest.purpose}</p>
+                  <p><strong>Flat Number:</strong> {guest.flatNumber || "N/A"}</p>
+                  <p><strong>Status:</strong> {guest.status || "Pending"}</p>
+                  
+                  {/* Display approval/rejection buttons for pending guests */}
+                  {guest.status === "Pending" && (
+                    <div>
+                      <button onClick={() => handleApproval(guest.id, "Approved")}>Approve</button>
+                      <button onClick={() => handleApproval(guest.id, "Rejected")}>Reject</button>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          ))
-        )}
-      </div>
+            ))
+          )}
+        </div>
+      )}
     </div>
   );
 };

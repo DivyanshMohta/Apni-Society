@@ -40,7 +40,7 @@ const ServiceCard = () => {
         },
         {
             title: 'Home Repair',
-            description: 'Quality home repair services for all your needs.',
+            description: 'Quality and fast home repair services for all your needs.',
             icon: <FaHome className="service-icon" />,
             route: '../Dashboard',
         },
@@ -53,7 +53,7 @@ const ServiceCard = () => {
     return (
         <div className="service-card-container">
             {services.map((service, index) => (
-                <div className="service-card" key={index}>
+                <div className="service-card-home" key={index}>
                     <div className="service-content">
                         {service.icon} {/* Icon representing the service */}
                         <h3>{service.title}</h3>
