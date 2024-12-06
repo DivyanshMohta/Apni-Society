@@ -57,7 +57,7 @@ const MeetingScheduler = () => {
         />
         <div className="time-input">
           <input
-            type="number"
+            type="time"
             name="hour"
             value={formData.time.hour}
             onChange={handleTimeChange}

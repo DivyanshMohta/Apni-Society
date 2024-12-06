@@ -3,6 +3,7 @@ import { db } from "../firebaseConfig";
 import { collection, getDocs, addDoc, query, where } from "firebase/firestore";
 import axios from "axios";
 import "./KiranaStore.css";
+import Services from "./Services";
 
 const KiranaStore = () => {
   const [products, setProducts] = useState([]);
@@ -11,6 +12,7 @@ const KiranaStore = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [showSection, setShowSection] = useState("products"); // 'products', 'cart', 'orders'
+  const [showService, setShowService] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -121,10 +123,15 @@ const KiranaStore = () => {
       (selectedCategory === "All" || product.category === selectedCategory)
   );
 
+  if(showService) {
+    return <Services />
+  }
+
   return (
     <div className="kirana-store">
       <header className="store-header">
         <h1>Kirana Store</h1>
+        <button onClick={() => setShowService(true)} className="back-button">Back to Services</button>
         <input
           type="text"
           placeholder="Search products..."
