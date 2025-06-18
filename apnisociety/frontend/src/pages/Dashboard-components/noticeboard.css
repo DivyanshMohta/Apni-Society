@@ -121,6 +121,7 @@
 
 /* Posted Notices Styling */
 .posted-notices {
+    
     margin-top: 40px;
     display: flex;
     flex-direction: column;
@@ -130,7 +131,7 @@
 /* Notice Item Styling */
 .notice-item {
     background-color: white;
-    border: 1px solid #ddd;
+    border: 2px solid #2fb2d3;
     border-radius: 8px;
     padding: 10px;
     max-width: 100%; /* Ensures each notice fits within its container */

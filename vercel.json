@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "apnisociety/frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "build" }
+    },
+    {
+      "src": "apnisociety/backend/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/apnisociety/backend/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/apnisociety/frontend/build/$1"
+    }
+  ]
+}

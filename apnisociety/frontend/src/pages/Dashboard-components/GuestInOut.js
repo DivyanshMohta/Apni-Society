@@ -67,7 +67,7 @@ const GuestInOut = () => {
               }
             }
           }
-  
+
           // Only add guests matching the user's flat number
           if (guestData.flatNumber === flatNumber) {
             guestList.push({ id: docSnap.id, ...guestData, imageUrl });
