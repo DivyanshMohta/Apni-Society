@@ -17,7 +17,7 @@ A full-featured web platform for managing residential societies efficiently. The
 👤 User Profile – Resident-specific details and preferences
 
 🎥 Demo
-🔗 [Landing Page & Overview (Google Drive](https://drive.google.com/file/d/1Q2r0LFJRni1Y3kT_jXi7Qbp3hrnaCRmD/view?usp=drive_link)
+🔗 [Landing Page & Overview (Google Drive)](https://drive.google.com/file/d/1Q2r0LFJRni1Y3kT_jXi7Qbp3hrnaCRmD/view?usp=drive_link)
 
 🔗 [Notice Board + Electrician Service Workflow – Watch Demo (Google Drive)](https://drive.google.com/file/d/1ixub76MZ3eGNLEPAj-pZ_8ArY4aTYpyM/view?usp=drive_link)
 
@@ -33,19 +33,21 @@ A full-featured web platform for managing residential societies efficiently. The
 
 
 ## ⚙️ Tech Stack
-#### Frontend: React.js, CSS 	🎨
+- 🎨 **Frontend**: React.js, CSS
+  
+- 🛠️ **Backend**: Node.js, Python
+  
+- 🗄️ **Database**: Firebase
+  
+- 🔐 **Authentication**: Firebase
+  
+- 💳 **Payment Gateway**: Razorpay
+  
 
-#### Backend: Node.js, Python 🛠️
+## 🚀 How to Run Locally
 
-#### Database: FireBase 🗄️
-
-#### Authentication: FireBase 🔐
-
-#### Payment Gateway: Razorpay 💳 
-
-
-## Go to project directory
 ```
+ Go to project directory
 cd aapni-society
 
 # Install frontend dependencies
@@ -58,3 +60,8 @@ cd ../backend
 npm install
 npm start
 ```
+
+---
+
+## 📬 Connect With Me
+🔗 [LinkedIn]([https://www.linkedin.com/in/yourusername](https://www.linkedin.com/in/divyansh-mohta-36094225a/))  
