@@ -29,7 +29,7 @@ A full-featured web platform for managing residential societies efficiently. The
 ![Payment Screenshot](./ScreenShot/maintainess fees.png)
 
 🚪 Guest In/Out Management
-![Guest In-Out Screenshot](./ScreenShot/Guest in-out.png)
+![Guest In-Out Screenshot]([./ScreenShot/Guest in-out.png](https://github.com/DivyanshMohta/Apni-Society/blob/fcd8f0b0c0a188a4ca00ed2ba171bcffedda6894/ScreenShot/Guest%20in-out.png))
 
 
 ## ⚙️ Tech Stack
