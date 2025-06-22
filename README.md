@@ -64,4 +64,4 @@ npm start
 ---
 
 ## 📬 Connect With Me
-🔗 [LinkedIn]([https://www.linkedin.com/in/yourusername](https://www.linkedin.com/in/divyansh-mohta-36094225a/))  
+🔗 [LinkedIn]((https://www.linkedin.com/in/divyansh-mohta-36094225a/))  
