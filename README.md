@@ -29,7 +29,7 @@ A full-featured web platform for managing residential societies efficiently. The
 ![Payment Screenshot](./ScreenShot/maintainess_fees.png)
 
 🚪 Guest In/Out Management
-![Guest In-Out Screenshot](./ScreenShot/Guest%20in-out.png))
+![Guest In-Out Screenshot](./ScreenShot/Guest_in-out.png))
 
 
 ## ⚙️ Tech Stack
