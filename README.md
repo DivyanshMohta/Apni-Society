@@ -3,11 +3,17 @@ A full-featured web platform for managing residential societies efficiently. The
 
 ## ✨ Features
 🪪 Visitor In/Out Tracking – Approve or log guest visits with details
+
 💵 Maintenance Fee Payment – Pay society dues using Razorpay integration
+
 🧹 Book Services – Cleaning, Plumbing, Gardening, Grocery, etc.
+
 📋 Notice Board – Post and view announcements
+
 🧰 Admin Panels – For electricians, Kirana store, etc.
+
 📅 Event/Meeting Scheduler – Notify residents of upcoming events
+
 👤 User Profile – Resident-specific details and preferences
 
 🎥 Demo
@@ -17,8 +23,14 @@ A full-featured web platform for managing residential societies efficiently. The
 
 ## 🖼️ Screenshots
 🧰 Services Module
+![Services Included](./ScreenShot/Services.png)
 
 💳 Maintainance Fee Payment (Razorpay Integration)
+![Payment Screenshot](./ScreenShot/maintainess fees.png)
+
+🚪 Guest In/Out Management
+![Guest In-Out Screenshot](./ScreenShot/Guest in-out.png)
+
 
 ## ⚙️ Tech Stack
 Frontend: React.js, CSS
