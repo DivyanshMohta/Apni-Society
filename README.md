@@ -17,9 +17,9 @@ A full-featured web platform for managing residential societies efficiently. The
 👤 User Profile – Resident-specific details and preferences
 
 🎥 Demo
-🔗 ![Landing Page & Overview](https://drive.google.com/file/d/1Q2r0LFJRni1Y3kT_jXi7Qbp3hrnaCRmD/view?usp=drive_link)
+🔗 [Landing Page & Overview (Google Drive](https://drive.google.com/file/d/1Q2r0LFJRni1Y3kT_jXi7Qbp3hrnaCRmD/view?usp=drive_link)
 
-🔗 ![Notice Board + Electrician Service Workflow – Watch Demo](https://drive.google.com/file/d/1ixub76MZ3eGNLEPAj-pZ_8ArY4aTYpyM/view?usp=drive_link)
+🔗 [Notice Board + Electrician Service Workflow – Watch Demo (Google Drive)](https://drive.google.com/file/d/1ixub76MZ3eGNLEPAj-pZ_8ArY4aTYpyM/view?usp=drive_link)
 
 ## 🖼️ Screenshots
 🧰 Services Module
