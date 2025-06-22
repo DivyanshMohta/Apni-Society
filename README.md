@@ -33,15 +33,15 @@ A full-featured web platform for managing residential societies efficiently. The
 
 
 ## ⚙️ Tech Stack
-#### Frontend: React.js, CSS
+#### Frontend: React.js, CSS 	🎨
 
-#### Backend: Node.js, Python
+#### Backend: Node.js, Python 🛠️
 
-#### Database: FireBase
+#### Database: FireBase 🗄️
 
-#### Authentication: FireBase
+#### Authentication: FireBase 🔐
 
-#### Payment Gateway: Razorpay
+#### Payment Gateway: Razorpay 💳 
 
 
 ## Go to project directory
