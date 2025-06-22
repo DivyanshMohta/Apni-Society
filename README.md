@@ -17,9 +17,9 @@ A full-featured web platform for managing residential societies efficiently. The
 👤 User Profile – Resident-specific details and preferences
 
 🎥 Demo
-🔗 Landing Page & Overview – Watch on YouTube (replace with your actual link)
+🔗 ![Landing Page & Overview](https://drive.google.com/file/d/1Q2r0LFJRni1Y3kT_jXi7Qbp3hrnaCRmD/view?usp=drive_link)
 
-🔗 Notice Board + Electrician Service Workflow – Watch Demo
+🔗 ![Notice Board + Electrician Service Workflow – Watch Demo](https://drive.google.com/file/d/1ixub76MZ3eGNLEPAj-pZ_8ArY4aTYpyM/view?usp=drive_link)
 
 ## 🖼️ Screenshots
 🧰 Services Module
@@ -29,18 +29,22 @@ A full-featured web platform for managing residential societies efficiently. The
 ![Payment Screenshot](./ScreenShot/maintainess_fees.png)
 
 🚪 Guest In/Out Management
-![Guest In-Out Screenshot](./ScreenShot/Guest_in-out.png))
+![Guest In-Out Screenshot](./ScreenShot/Guest_in-out.png)
 
 
 ## ⚙️ Tech Stack
-Frontend: React.js, CSS
-Backend: Node.js, Python
-Database: FireBase
-Authentication: FireBase
-Payment Gateway: Razorpay
+#### Frontend: React.js, CSS
+
+#### Backend: Node.js, Python
+
+#### Database: FireBase
+
+#### Authentication: FireBase
+
+#### Payment Gateway: Razorpay
 
 
-# Go to project directory
+## Go to project directory
 ```
 cd aapni-society
 
