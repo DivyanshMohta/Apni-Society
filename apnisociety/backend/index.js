@@ -7,8 +7,8 @@ app.use(cors()); // Enable CORS for cross-origin requests
 
 // Razorpay instance initialization with hardcoded keys
 const razorpay = new Razorpay({
-  key_id: 'rzp_test_o8Jt6TYig30XtL', // Your Razorpay key_id
-  key_secret: 'oNUtvG0gHnYOfTpydhMFsurJ', // Your Razorpay key_secret
+  key_id: '***', // Your Razorpay key_id
+  key_secret: '***', // Your Razorpay key_secret
 });
 
 // Create a payment order
