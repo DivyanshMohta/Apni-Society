@@ -26,7 +26,7 @@ app.get('/pay', async (req, res) => {
     const order = await razorpay.orders.create(options);
     res.status(200).json({
       orderId: order.id,
-      key_id: 'rzp_test_o8Jt6TYig30XtL', // Send key_id to frontend
+      key_id: '****', // Send key_id to frontend
       amount: order.amount,
       currency: order.currency,
     });
